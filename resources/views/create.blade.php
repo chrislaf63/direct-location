@@ -856,27 +856,76 @@
 <body>
 @include('layouts.front.header')
 <main>
-    <div class="flex flex-col space-y-20">
+    <div class="bg-neutral-200">
+        <form method="post" action="{{ route('ad.store') }}"
+              class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-[0px 14px 34px 0px rgba(0,0,0,0.08)]">
+            @csrf
+            @method('POST')
+            <div class="flex flex-col gap-4">
+                <div>
+                    <label for="category" class="text-sm font-semibold">Catégorie</label>
+                    <select name="category" id="category" class="w-full p-3 mt-2 border border-neutral-300 rounded-md"
+                            required>
+                        <option value="1">Catégorie 1</option>
+                        <option value="2">Catégorie 2</option>
+                        <option value="3">Catégorie 3</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="region" class="text-sm font-semibold">Région</label>
+                    <select name="region" id="region" class="w-full p-3 mt-2 border border-neutral-300 rounded-md"
+                            required>
+                        @foreach($regions as $region)
+                        <option value="{{ $region->id }}">{{ $region->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label for="departement" class="text-sm font-semibold">Département</label>
+                    <select name="departement" id="departement" class="w-full p-3 mt-2 border border-neutral-300 rounded-md"
+                            required>
+                        @foreach($departements as $departement)
+                        <option value="{{ $region->id }}">{{ $departement->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label for="title" class="text-sm font-semibold">Ville</label>
+                    <input type="text" name="city" id="city"
+                           class="w-full p-3 mt-2 border border-neutral-300 rounded-md" required>
+                </div>
+                <div>
+                    <label for="title" class="text-sm font-semibold">Code postal</label>
+                    <input type="text" name="zip_code" id="zip_code"
+                           class="w-full p-3 mt-2 border border-neutral-300 rounded-md" required>
+                </div>
+                <div>
+                    <label for="title" class="text-sm font-semibold">Titre de l'annonce</label>
+                    <input type="text" name="title" id="title"
+                           class="w-full p-3 mt-2 border border-neutral-300 rounded-md" required>
+                </div>
+                <div>
+                    <label for="description" class="text-sm font-semibold">Description</label>
+                    <textarea name="description" id="description"
+                              class="w-full p-3 mt-2 border border-neutral-300 rounded-md" required></textarea>
+                </div>
+                <div>
+                    <label for="price" class="text-sm font-semibold">Prix</label>
+                    <input type="number" name="price" id="price"
+                           class="w-full p-3 mt-2 border border-neutral-300 rounded-md" required>
+                </div>
 
-        @foreach($ads as $ad)
-        <div class="flex m-auto w-1/2 gap-4 bg-gray-300">
-            <div>
-                @foreach($ad->image as $image)
-                <img src="{{$image->source}}" alt="{{$ad->title}}">
-                @endforeach
+                <div>
+                    <label for="image" class="text-sm font-semibold">Image</label>
+                    <input type="file" name="image" id="image"
+                           class="w-full p-3 mt-2 border border-neutral-300 rounded-md">
+                </div>
+                <input type="hidden" name="user_id" value="{{ $user }}">
+                <div>
+                    <button type="submit" class="w-full p-3 mt-2 bg-[#FF2D20] text-white rounded-md">Publier</button>
+                </div>
             </div>
-            <div>
-                <p>{{$ad->title}}</p>
-                <p>{{$ad->description}}</p>
-                <p>{{$ad->price}}&ensp;€</p>
-                <p><span>{{ $ad->city->zip_code }}</span><span>&ensp; {{ $ad->city->name }}</span></p>
-                <p>{{$ad->user->name}}</p>
-                <a href="{{ route('ad.show', $ad->id) }}">
-                    <button>Voir l'annonce</button>
-                </a>
-            </div>
-        </div>
-        @endforeach
+        </form>
     </div>
 </main>
 </body>

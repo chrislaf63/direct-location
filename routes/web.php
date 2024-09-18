@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('annonces', [AdController::class, 'index'])->name('ad.index');
 Route::get('annonces/{id}', [AdController::class, 'show'])->name('ad.show');
-Route::get('annonces/deposer-une-annonce', [AdController::class, 'create'])->name('ad.create');
+Route::get('deposer-une-annonce', [AdController::class, 'create'])->name('ad.create');
 Route::post('annonces/deposer-une-annonce', [AdController::class, 'store'])->name('ad.store');
 Route::put('annonces/{id}', [AdController::class, 'update'])->name('ad.update');
 Route::delete('annonces/{id}', [AdController::class, 'destroy'])->name('ad.destroy');
