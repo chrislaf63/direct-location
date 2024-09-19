@@ -20,6 +20,7 @@ class AdsFactory extends Factory
             'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
             'price' => $this->faker->randomFloat(2, 1, 1000),
+            'time_unity' => $this->faker->randomElement(['heure', 'demi-journée', 'jour', 'semaine', 'mois', 'année']),
             'category_id' => $this->faker->numberBetween(1, 10),
             'user_id' => $this->faker->numberBetween(1, 10),
             'city_id' => $this->faker->numberBetween(1, 10),

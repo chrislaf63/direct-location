@@ -13,6 +13,7 @@ class Ads extends Model
         'title',
         'description',
         'price',
+        'time_unity',
         'category_id',
         'user_id',
         'city_id',

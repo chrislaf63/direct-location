@@ -857,7 +857,7 @@
 @include('layouts.front.header')
 <main>
     <div class="bg-neutral-200">
-        <form method="post" action="{{ route('ad.store') }}"
+        <form method="post" action="{{ route('ad.store') }}" enctype="multipart/form-data"
               class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-[0px 14px 34px 0px rgba(0,0,0,0.08)]">
             @csrf
             @method('POST')
@@ -885,7 +885,7 @@
                     <select name="departement" id="departement" class="w-full p-3 mt-2 border border-neutral-300 rounded-md"
                             required>
                         @foreach($departements as $departement)
-                        <option value="{{ $region->id }}">{{ $departement->name }}</option>
+                        <option value="{{ $departement->id }}">{{ $departement->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -914,10 +914,31 @@
                     <input type="number" name="price" id="price"
                            class="w-full p-3 mt-2 border border-neutral-300 rounded-md" required>
                 </div>
-
                 <div>
-                    <label for="image" class="text-sm font-semibold">Image</label>
-                    <input type="file" name="image" id="image"
+                    <label for="time_unity" class="text-sm font-semibold">Par</label>
+                    <select name="time_unity" id="time_unity" class="w-full p-3 mt-2 border border-neutral-300 rounded-md"
+                            required>
+                        <option value="heure">heure</option>
+                        <option value="demi-journée">demi-journée</option>
+                        <option value="jour">jour</option>
+                        <option value="semaine">semaine</option>
+                        <option value="mois">mois</option>
+                        <option value="année">année</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="image1" class="text-sm font-semibold">Image n°1</label>
+                    <input type="file" name="image1" id="image1"
+                           class="w-full p-3 mt-2 border border-neutral-300 rounded-md">
+                </div>
+                <div>
+                    <label for="image2" class="text-sm font-semibold">Image n°2</label>
+                    <input type="file" name="image2" id="image2"
+                           class="w-full p-3 mt-2 border border-neutral-300 rounded-md">
+                </div>
+                <div>
+                    <label for="image3" class="text-sm font-semibold">Image n°3</label>
+                    <input type="file" name="image3" id="image3"
                            class="w-full p-3 mt-2 border border-neutral-300 rounded-md">
                 </div>
                 <input type="hidden" name="user_id" value="{{ $user }}">

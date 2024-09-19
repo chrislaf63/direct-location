@@ -4,9 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('annonces', [AdController::class, 'index'])->name('ad.index');
+Route::get('/', [AdController::class, 'index'])->name('ad.index');
 Route::get('annonces/{id}', [AdController::class, 'show'])->name('ad.show');
 Route::get('deposer-une-annonce', [AdController::class, 'create'])->name('ad.create');
 Route::post('annonces/deposer-une-annonce', [AdController::class, 'store'])->name('ad.store');

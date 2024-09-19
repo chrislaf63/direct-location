@@ -860,12 +860,14 @@
 
         @foreach($ads as $ad)
         <div class="flex m-auto w-1/2 gap-4 bg-gray-300">
-            <div>
-                @foreach($ad->image as $image)
-                <img src="{{$image->source}}" alt="{{$ad->title}}">
-                @endforeach
+            <div class="w-1/3">
+                @if($ad->image->isNotEmpty())
+                <img src="{{ $ad->image->first()->source}}" alt="{{$ad->title}}">
+                @elseif($ad->image->isEmpty())
+                <img src="{{ asset('images/no-image.png') }}" alt="no image">
+                @endif
             </div>
-            <div>
+            <div class="w-2/3">
                 <p>{{$ad->title}}</p>
                 <p>{{$ad->description}}</p>
                 <p>{{$ad->price}}&ensp;€</p>
