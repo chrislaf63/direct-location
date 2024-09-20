@@ -56,26 +56,20 @@ class AdController extends Controller
 
         ]);
 
-        $compare = City::select('zip_code')->get();
-        $city = new City();
-        $city->name = $request->city;
-        $city->zip_code = $request->zip_code;
-        $city->departement_id = $request->departement;
-        $count = 0;
-        foreach ($compare as $zip) {
-            if ($zip->zip_code == $request->zip_code && $zip->name == $request->city) {
-                $city->id = $zip->id;
-                $count = 1;
-            }
-        }
-       if ($count == 0) {
-            $city->save();
-        }
+        // Utilisation de firstOrCreate pour éviter les doublons
+        $city = City::firstOrCreate(
+            [
+                'name' => $request->city,
+                'zip_code' => $request->zip_code,
+            ],
+            [
+                'departement_id' => $request->departement,
+            ]
+        );
 
-        $insert_city = City::where('name', $request->city)->first();
         $ad = new Ads();
         $ad->user_id = $request->user_id;
-        $ad->city_id = $insert_city->id;
+        $ad->city_id = $city->id;
         $ad->title = $request->title;
         $ad->description = $request->description;
         $ad->price = $request->price;
@@ -95,17 +89,6 @@ class AdController extends Controller
                 $img->save();
             }
         };
-//        if($request->hasFile('image')) {
-//            $photoName = time().'.'.$request->image->extension();
-//            $request->image->move(public_path('images'), $photoName);
-//            $img = new Image();
-//            $appUrl = config('app.url');
-//            $img->source = $appUrl."/images/".$photoName;
-//            $img->ads_id = $ad->id;
-//            $img->user_id = $request->user_id;
-//            $img->save();
-//        }
-
         return redirect()->route('ad.index')->with('success', 'Annonce créée avec succès');
     }
 
