@@ -25,6 +25,6 @@ Route::post('annonces/deposer-une-annonce', [AdController::class, 'store'])->nam
 Route::put('annonces/{id}', [AdController::class, 'update'])->name('ad.update');
 Route::delete('annonces/{id}', [AdController::class, 'destroy'])->name('ad.destroy');
 
-
+Route::get('profile', [ProfileController::class, 'display'])->name('user');
 
 require __DIR__.'/auth.php';

@@ -13,7 +13,7 @@ class AdController extends Controller
 {
     public function index()
     {
-        $ads = Ads::all();
+        $ads = Ads::latest()->paginate(10);
         return view('index', compact('ads'), [
             'title' => 'Annonces',
         ]);
