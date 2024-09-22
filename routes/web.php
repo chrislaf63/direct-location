@@ -20,11 +20,18 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/', [AdController::class, 'index'])->name('ad.index');
 Route::get('annonces/{id}', [AdController::class, 'show'])->name('ad.show');
-Route::get('deposer-une-annonce', [AdController::class, 'create'])->name('ad.create');
-Route::post('annonces/deposer-une-annonce', [AdController::class, 'store'])->name('ad.store');
-Route::put('annonces/{id}', [AdController::class, 'update'])->name('ad.update');
-Route::delete('annonces/{id}', [AdController::class, 'destroy'])->name('ad.destroy');
+//Route::get('deposer-une-annonce', [AdController::class, 'create'])->name('ad.create');
+//Route::post('annonces/deposer-une-annonce', [AdController::class, 'store'])->name('ad.store');
+//Route::put('annonces/{id}', [AdController::class, 'update'])->name('ad.update');
+//Route::delete('annonces/{id}', [AdController::class, 'destroy'])->name('ad.destroy');
 
 Route::get('profile', [ProfileController::class, 'display'])->name('user');
 
 require __DIR__.'/auth.php';
+
+Route::controller(AdController::class)->middleware('auth')->group(function () {
+    Route::get('deposer-une-annonce', 'create')->name('ad.create');
+    Route::post('annonces/deposer-une-annonce', 'store')->name('ad.store');
+    Route::put('annonces/{id}', 'update')->name('ad.update');
+    Route::delete('annonces/{id}', 'destroy')->name('ad.destroy');
+});

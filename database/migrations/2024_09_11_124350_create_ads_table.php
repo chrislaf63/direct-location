@@ -14,18 +14,22 @@ return new class extends Migration
         Schema::create('ads', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->enum('status', array('pending', 'published'));
             $table->text('description');
             $table->decimal('price', 10, 2);
             $table->enum('time_unity', array('heure', 'demi-journée', 'jour', 'semaine', 'mois', 'année'));
             $table->foreignId('category_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->onUpdate('cascade')
+                ->onDelete('set null');
             $table->foreignId('user_id')
                 ->constrained()
+                ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignId('city_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->onUpdate('cascade')
+                ->onDelete('set null');
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ class ImageFactory extends Factory
     {
         return [
             'source' => $this->faker->imageUrl(),
-            'ads_id' => $this->faker->numberBetween(1, 100),
+            'ads_id' => $this->faker->numberBetween(1, 10),
             'user_id' => $this->faker->numberBetween(1, 100),
         ];
     }

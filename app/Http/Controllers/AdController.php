@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 use App\Models\Region;
 use App\Models\Departement;
 use App\Models\City;
+use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class AdController extends Controller
 {
     public function index()
     {
-        $ads = Ads::latest()->paginate(10);
+        $ads = Ads::where('status', '=', 'published' )->latest()->paginate(10);
         return view('index', compact('ads'), [
             'title' => 'Annonces',
         ]);
@@ -29,10 +31,11 @@ class AdController extends Controller
 
     public function create()
     {
-        $user = 1;
+        $user = Auth::user();
+        $categories = Category::all();
         $regions = Region::all();
         $departements = Departement::all();
-        return view('create', compact(['regions', 'departements', 'user']), [
+        return view('create', compact(['regions', 'departements', 'user', 'categories']), [
             'title' => 'Créer une annonce',
         ]);
     }
@@ -50,6 +53,7 @@ class AdController extends Controller
             'price' => 'required',
             'time_unity' => 'required',
             'category' => 'required',
+            'status' => 'required',
             'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
             'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
             'image3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
@@ -71,6 +75,7 @@ class AdController extends Controller
         $ad->user_id = $request->user_id;
         $ad->city_id = $city->id;
         $ad->title = $request->title;
+        $ad->status = $request->status;
         $ad->description = $request->description;
         $ad->price = $request->price;
         $ad->time_unity = $request->time_unity;

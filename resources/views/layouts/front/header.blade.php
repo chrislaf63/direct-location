@@ -1,7 +1,7 @@
 <header>
     <div class="flex w-full justify-around">
         <div>
-            <img src="{{ asset('images/logo1.png') }}" alt="logo">
+            <a href="{{ route('ad.index') }}"><img src="{{ asset('images/logo1.png') }}" alt="logo"></a>
         </div>
         <div class="flex flex-col justify-around">
             <div>

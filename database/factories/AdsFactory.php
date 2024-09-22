@@ -18,10 +18,11 @@ class AdsFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
+            'status' => $this->faker->randomElement(['pending', 'published']),
             'description' => $this->faker->paragraph(),
             'price' => $this->faker->randomFloat(2, 1, 1000),
             'time_unity' => $this->faker->randomElement(['heure', 'demi-journée', 'jour', 'semaine', 'mois', 'année']),
-            'category_id' => $this->faker->numberBetween(1, 10),
+            'category_id' => $this->faker->numberBetween(1, 6),
             'user_id' => $this->faker->numberBetween(1, 10),
             'city_id' => $this->faker->numberBetween(1, 10),
         ];
