@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -16,10 +17,13 @@ class AdsFactory extends Factory
      */
     public function definition(): array
     {
+        $content = $this->faker->paragraphs(asText: true);
+
         return [
             'title' => $this->faker->sentence(),
             'status' => $this->faker->randomElement(['pending', 'published']),
-            'description' => $this->faker->paragraph(),
+            'excerpt' => Str::limit($content, 150),
+            'description' => $content,
             'price' => $this->faker->randomFloat(2, 1, 1000),
             'time_unity' => $this->faker->randomElement(['heure', 'demi-journée', 'jour', 'semaine', 'mois', 'année']),
             'category_id' => $this->faker->numberBetween(1, 6),

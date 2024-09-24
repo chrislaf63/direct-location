@@ -21,10 +21,18 @@ export default {
                 '4/5': '80%',
                 '60vh': '60vh',
             },
+            height: {
+                'preview': '230px',
+            },
             screens: {
                 '3xl': '1537px',
                 '4xl': '1921px', // Définit le breakpoint XXL pour les écrans ≥ 1920px
             },
+            width: {
+                'dash': 'calc(100vw - 392px)',
+                'dashsidebar': '392px',
+
+            }
         },
     },
 

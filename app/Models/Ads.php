@@ -12,6 +12,7 @@ class Ads extends Model
     protected $fillable = [
         'title',
         'status',
+        'excerpt',
         'description',
         'price',
         'time_unity',
