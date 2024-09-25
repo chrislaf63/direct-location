@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ads extends Model
+class Ad extends Model
 {
     use HasFactory;
 
@@ -39,5 +39,10 @@ class Ads extends Model
     public function image()
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'ad_user')->withTimestamps();
     }
 }

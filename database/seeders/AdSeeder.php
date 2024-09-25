@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Ads;
+use App\Models\Ad;
 
 class AdSeeder extends Seeder
 {
@@ -13,6 +13,6 @@ class AdSeeder extends Seeder
      */
     public function run(): void
     {
-        Ads::factory(10)->create();
+        Ad::factory(10)->create();
     }
 }

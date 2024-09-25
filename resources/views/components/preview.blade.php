@@ -7,7 +7,18 @@
         @endif
     </div>
     <div class="w-2/3 pr-3">
-        <p class="font-semibold mb-2 pt-2">{{$ad->title}}</p>
+        <div class="flex">
+            <div><p class="font-semibold mb-2 pt-2">{{$ad->title}}</p></div>
+            <div class="ml-auto">
+                @auth
+                <div class="favorite-container">
+                    @include('partials.favorite-button', ['ad' => $ad])
+                </div>
+                @else
+                <p>Connectez-vous pour ajouter aux favoris</p>
+                @endauth
+            </div>
+        </div>
         <p class="mb-2">{{$ad->excerpt}}</p>
         <p class="mb-2"><span class="font-medium">{{$ad->city->name}}</span><span>({{$ad->city->zip_code}})</span></p>
         <p class="mb-2"><span class="font-medium">{{$ad->price}}€</span>&ensp;/&nbsp;{{$ad->time_unity}}</p>

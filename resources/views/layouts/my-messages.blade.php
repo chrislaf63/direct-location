@@ -853,36 +853,92 @@
     </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).on('submit', '.favorite-form', function (e) {
-        e.preventDefault();
 
-        var form = $(this);
-        var url = form.attr('action');
-        var method = form.find('input[name="_method"]').val() || 'POST'; // Définit le type de requête : POST ou DELETE
-        var data = form.serialize();
-
-        $.ajax({
-            url: url,
-            type: method === 'DELETE' ? 'POST' : method, // POST si DELETE pour compatibilité avec HTML forms
-            data: data,
-            success: function (response) {
-                // Remplacer le bouton favori avec la nouvelle version reçue du serveur
-                form.closest('.favorite-container').html(response.html);
-            },
-            error: function (xhr) {
-                alert('Une erreur est survenue. Veuillez réessayer.');
-            }
-        });
-    });
-</script>
 <body class="relative min-h-screen">
 @include('layouts.front.header')
-<main class="mt-64">
+<main class="pt-48 min-h-screen" >
     @yield('content')
 </main>
-@include('layouts.front.footer')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('DOM chargé');
+
+        let firstActive = document.querySelector('.ad-item.bg-gray-300'); // Chercher l'élément actif
+
+        // Si une conversation est déjà active, récupérer directement les messages
+        if (firstActive) {
+            let adId = firstActive.getAttribute('data-ad-id');
+            let conversationId = firstActive.getAttribute('data-conversation-id');
+
+            console.log('Dernière conversation sélectionnée:', adId, conversationId);
+
+            // Charger directement les messages de la conversation active
+            fetch(`/conversations/${conversationId}/messages`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Messages reçus:', data);
+                    renderMessages(data);
+                    showResponseForm(conversationId);  // Afficher le formulaire de réponse
+                })
+                .catch(error => console.error('Erreur lors de la récupération des messages:', error));
+        }
+
+        let adItems = document.querySelectorAll('.ad-item');
+
+        adItems.forEach(item => {
+            item.addEventListener('click', function() {
+                let adId = this.getAttribute('data-ad-id');
+                let conversationId = this.getAttribute('data-conversation-id');
+
+                console.log('Annonce sélectionnée:', adId, conversationId);
+
+                // Retirer la classe active de toutes les annonces
+                document.querySelectorAll('.ad-item').forEach(el => {
+                    el.classList.remove('bg-gray-300');
+                });
+
+                // Ajouter la classe active à l'annonce sélectionnée
+                this.classList.add('bg-gray-300');
+
+                // Récupérer les messages via AJAX pour la conversation correspondante
+                fetch(`/conversations/${conversationId}/messages`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Messages reçus:', data);
+                        renderMessages(data);
+                        showResponseForm(conversationId);  // Afficher le formulaire de réponse
+                    })
+                    .catch(error => console.error('Erreur lors de la récupération des messages:', error));
+            });
+        });
+    });
+
+    function renderMessages(data) {
+        let messagesContainer = document.getElementById('message-container');
+        messagesContainer.innerHTML = '';  // Vider les messages actuels
+
+        data.messages.forEach(message => {
+            let messageDiv = document.createElement('div');
+
+            // Vérifier si l'utilisateur est l'auteur du message
+            if (message.sender_id === {{ auth()->user()->id }}) {
+                messageDiv.classList.add('message', 'bg-green-200', 'self-end', 'rounded-lg', 'p-3', 'mb-4', 'w-auto', 'max-w-xs', 'text-right');
+            } else {
+                messageDiv.classList.add('message', 'bg-white', 'self-start', 'rounded-lg', 'p-3', 'mb-4', 'w-auto', 'max-w-xs', 'text-left');
+            }
+
+            messageDiv.innerText = message.content;
+            messagesContainer.appendChild(messageDiv);
+        });
+    }
+
+    // Fonction pour afficher le formulaire de réponse
+    function showResponseForm(conversationId) {
+        const form = document.getElementById('response-form');
+        form.action = `/conversations/${conversationId}/reply`; // Mettre à jour l'action du formulaire
+        form.style.display = 'block'; // Afficher le formulaire
+    }
+</script>
 </body>
 </html>
-

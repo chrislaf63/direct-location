@@ -12,7 +12,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $excerpt = Str::
 
         Schema::create('ads', function (Blueprint $table) {
             $table->id();

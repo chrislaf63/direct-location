@@ -18,10 +18,12 @@ class ProfileController extends Controller
     public function display(): View
     {
         $user = Auth::user();
+        $recordedAds = $user->favorites()->count();
         $myads = $user->ads->count();
         return view('profile', compact('user'), [
             'title' => 'Tableau de bord',
             'myads' => $myads,
+            'recordedAds' => $recordedAds,
             ]);
     }
 

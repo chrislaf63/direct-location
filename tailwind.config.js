@@ -31,6 +31,7 @@ export default {
             width: {
                 'dash': 'calc(100vw - 392px)',
                 'dashsidebar': '392px',
+                'conversations': '1066px',
 
             }
         },

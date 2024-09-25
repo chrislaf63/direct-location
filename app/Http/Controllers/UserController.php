@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ads;
+use App\Models\Ad;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -10,8 +10,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $nbwaitingads = Ads::where('status', 'pending')->count();
-        $nbpublishedads = Ads::where('status', 'published')->count();
+        $nbwaitingads = Ad::where('status', 'pending')->count();
+        $nbpublishedads = Ad::where('status', 'published')->count();
         $registeredusers = User::all()->count();
         $users = User::all();
         return view('users', compact('users'), [
@@ -23,8 +23,8 @@ class UserController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $nbwaitingads = Ads::where('status', 'pending')->count();
-        $nbpublishedads = Ads::where('status', 'published')->count();
+        $nbwaitingads = Ad::where('status', 'pending')->count();
+        $nbpublishedads = Ad::where('status', 'published')->count();
         $registeredusers = User::all()->count();
         $user = User::find($id);
         return view('user-edit', compact('user'),[

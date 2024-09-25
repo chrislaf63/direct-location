@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Ads;
+use App\Models\Ad;
 use App\Models\User;
 
 class AdminController extends Controller
 {
     public function display()
     {
-        $nbwaitingads = Ads::where('status', 'pending')->count();
-        $nbpublishedads = Ads::where('status', 'published')->count();
-        $publishedads =  Ads::where('status', 'published')->paginate(10);
+        $nbwaitingads = Ad::where('status', 'pending')->count();
+        $nbpublishedads = Ad::where('status', 'published')->count();
+        $publishedads =  Ad::where('status', 'published')->paginate(10);
         $registeredusers = User::all()->count();
         return view('published', [
             'nbwaitingads' => $nbwaitingads,
@@ -24,9 +24,9 @@ class AdminController extends Controller
 
     public function tovalidate()
     {
-        $nbwaitingads = Ads::where('status', 'pending')->count();
-        $nbpublishedads = Ads::where('status', 'published')->count();
-        $tovalidate = Ads::where('status', 'pending')->paginate(10);
+        $nbwaitingads = Ad::where('status', 'pending')->count();
+        $nbpublishedads = Ad::where('status', 'published')->count();
+        $tovalidate = Ad::where('status', 'pending')->paginate(10);
         $registeredusers = User::all()->count();
         return view('tovalidate', [
             'tovalidate' => $tovalidate,
@@ -38,10 +38,10 @@ class AdminController extends Controller
 
     public function show($id)
     {
-        $nbwaitingads = Ads::where('status', 'pending')->count();
-        $nbpublishedads = Ads::where('status', 'published')->count();
+        $nbwaitingads = Ad::where('status', 'pending')->count();
+        $nbpublishedads = Ad::where('status', 'published')->count();
         $registeredusers = User::all()->count();
-        $ad = Ads::find($id);
+        $ad = Ad::find($id);
         return view('adtovalidate', [
             'ad' => $ad,
             'nbwaitingads' => $nbwaitingads,
@@ -52,7 +52,7 @@ class AdminController extends Controller
 
     public function validate($id)
     {
-        $ad = Ads::find($id);
+        $ad = Ad::find($id);
         $ad->status = 'published';
         $ad->save();
         return redirect()->route('admin.tovalidate');
@@ -60,7 +60,7 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
-        $ad = Ads::find($id);
+        $ad = Ad::find($id);
         $ad->delete();
         return redirect()->route('admin.tovalidate');
     }

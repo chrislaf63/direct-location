@@ -12,12 +12,12 @@ class Image extends Model
 
     protected $fillable = [
         'source',
-        'ads_id',
+        'ad_id',
         'user_id',
 ];
     public function ad()
     {
-        return $this->belongsTo(Ads::class);
+        return $this->belongsTo(Ad::class);
     }
 
     public function user()

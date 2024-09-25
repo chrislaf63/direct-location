@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ads;
+use App\Models\Ad;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Models\Region;
@@ -15,7 +15,7 @@ class AdController extends Controller
 {
     public function index()
     {
-        $ads = Ads::where('status', '=', 'published' )->latest()->paginate(10);
+        $ads = Ad::where('status', '=', 'published' )->latest()->paginate(10);
         return view('index', compact('ads'), [
             'title' => 'Annonces',
         ]);
@@ -32,7 +32,7 @@ class AdController extends Controller
 
     public function show($id)
     {
-        $ad = Ads::findOrFail($id);
+        $ad = Ad::findOrFail($id);
         return view('show', compact('ad'), [
             'title' => $ad->title,
         ]);
@@ -80,7 +80,7 @@ class AdController extends Controller
             ]
         );
 
-        $ad = new Ads();
+        $ad = new Ad();
         $ad->user_id = $request->user_id;
         $ad->city_id = $city->id;
         $ad->title = $request->title;
@@ -109,7 +109,7 @@ class AdController extends Controller
 
     public function edit($id)
     {
-        $ad = Ads::findOrFail($id);
+        $ad = Ad::findOrFail($id);
         $categories = Category::all();
         $regions = Region::all();
         $departements = Departement::all();
@@ -138,7 +138,7 @@ class AdController extends Controller
 
         ]);
 
-        $ad = Ads::findOrFail($id);
+        $ad = Ad::findOrFail($id);
         $city = City::firstOrCreate(
             [
                 'name' => $request->city,
@@ -178,7 +178,7 @@ class AdController extends Controller
 
     public function destroy($id)
     {
-        $ad = Ads::findOrFail($id);
+        $ad = Ad::findOrFail($id);
         $ad->delete();
         return redirect()->route('ad.myads')->with('success', 'Annonce supprimée avec succès');
     }
