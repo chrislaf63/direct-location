@@ -64,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/conversations/{conversation}', [ConversationController::class, 'show'])->name('conversations.show'); // Afficher une conversation
     Route::get('/message/{id}', [MessageController::class, 'create'])->name('messages.create'); // Afficher le formulaire pour envoyer un message
     Route::post('/messages/', [MessageController::class, 'store'])->name('messages.store'); // Envoyer un message
+    Route::post('/messages/reply/{conversationId}', [MessageController::class, 'reply'])->name('messages.reply'); // Envoyer un message
 });
 
 Route::get('/ad-data/{id}', function($id) {

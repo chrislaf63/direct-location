@@ -23,6 +23,9 @@ export default {
             },
             height: {
                 'preview': '230px',
+                'messages': 'calc(100vh - 182px)',
+                'withHeader': 'calc(100vh - 118px)',
+                'withFooter': 'calc(100vh - 234px)',
             },
             screens: {
                 '3xl': '1537px',
@@ -32,7 +35,9 @@ export default {
                 'dash': 'calc(100vw - 392px)',
                 'dashsidebar': '392px',
                 'conversations': '1066px',
-
+            },
+            fontSize: {
+                'xs': '.75rem',
             }
         },
     },

@@ -15,7 +15,7 @@ class MessageController extends Controller
 
         return view('messages', compact('ad'),
             [
-            'title' => 'Messages',
+                'title' => 'Messages',
             ]);
     }
 
@@ -32,16 +32,29 @@ class MessageController extends Controller
         $adId = $validated['ad_id'];
         $receiverId = $validated['receiver_id'];
 
+        // Vérifier si une conversation existe déjà entre l'utilisateur connecté et le destinataire V1
+//        $conversation = Conversation::whereHas('messages', function ($query) use ($user, $receiverId) {
+//            $query->where(function($q) use ($user, $receiverId) {
+//                $q->where('sender_id', $user->id)
+//                    ->where('receiver_id', $receiverId);
+//            })->orWhere(function($q) use ($user, $receiverId) {
+//                $q->where('sender_id', $receiverId)
+//                    ->where('receiver_id', $user->id);
+//            });
+//        })->where('ad_id', $adId)->first();
+
+
         // Vérifier si une conversation existe déjà entre l'utilisateur connecté et le destinataire
-        $conversation = Conversation::whereHas('messages', function ($query) use ($user, $receiverId) {
-            $query->where(function($q) use ($user, $receiverId) {
-                $q->where('sender_id', $user->id)
-                    ->where('receiver_id', $receiverId);
-            })->orWhere(function($q) use ($user, $receiverId) {
-                $q->where('sender_id', $receiverId)
-                    ->where('receiver_id', $user->id);
-            });
-        })->where('ad_id', $adId)->first();
+        $conversation = Conversation::where('ad_id', $adId)
+            ->whereHas('messages', function ($query) use ($user, $receiverId) {
+                $query->where(function ($q) use ($user, $receiverId) {
+                    $q->where('sender_id', $user->id)
+                        ->where('receiver_id', $receiverId);
+                })->orWhere(function ($q) use ($user, $receiverId) {
+                    $q->where('sender_id', $receiverId)
+                        ->where('receiver_id', $user->id);
+                });
+            })->first();
 
         // Si la conversation n'existe pas, la créer
         if (!$conversation) {
@@ -60,4 +73,32 @@ class MessageController extends Controller
         return response()->json($message);
     }
 
+    public function reply(Request $request, $conversationId)
+    {
+        $validated = $request->validate([
+            'ad_id' => 'required|exists:ads,id',
+            'receiver_id' => 'required|exists:users,id',
+            'content' => 'required|string|max:255',
+        ]);
+
+        $adId = $validated['ad_id'];
+        $receiverId = $validated['receiver_id'];
+
+
+        $user = auth()->user();
+        $conversation = Conversation::find($conversationId);
+        $ref = $conversation->messages->first();
+        if($receiverId == $user->id) {
+            $receiverId = $ref->sender_id;
+        }
+
+        $message = Message::create([
+            'conversation_id' => $conversationId,
+            'sender_id' => auth()->id(),
+            'receiver_id' => $receiverId,
+            'content' => $validated['content'],
+        ]);
+
+        return response()->json($message);
+    }
 }

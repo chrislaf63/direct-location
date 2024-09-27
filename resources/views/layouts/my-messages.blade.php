@@ -854,9 +854,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="relative min-h-screen">
-@include('layouts.front.header')
-<main class="pt-48 min-h-screen" >
+<body class="relative h-screen">
+@include('layouts.front.header-static')
+<main class="h-withHeader" >
     @yield('content')
 </main>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -923,9 +923,9 @@
 
             // Vérifier si l'utilisateur est l'auteur du message
             if (message.sender_id === {{ auth()->user()->id }}) {
-                messageDiv.classList.add('message', 'bg-green-200', 'self-end', 'rounded-lg', 'p-3', 'mb-4', 'w-auto', 'max-w-xs', 'text-right');
+                messageDiv.classList.add('message', 'bg-green-200', 'self-end', 'rounded-l-lg', 'rounded-tr-lg', 'p-3', 'mb-4', 'w-auto', 'max-w-xs', 'text-right');
             } else {
-                messageDiv.classList.add('message', 'bg-white', 'self-start', 'rounded-lg', 'p-3', 'mb-4', 'w-auto', 'max-w-xs', 'text-left');
+                messageDiv.classList.add('message', 'bg-white', 'self-start', 'rounded-r-lg', 'rounded-tl-lg', 'p-3', 'mb-4', 'w-auto', 'max-w-xs', 'text-left', 'border-2', 'border-black/20');
             }
 
             messageDiv.innerText = message.content;
@@ -936,7 +936,7 @@
     // Fonction pour afficher le formulaire de réponse
     function showResponseForm(conversationId) {
         const form = document.getElementById('response-form');
-        form.action = `/conversations/${conversationId}/reply`; // Mettre à jour l'action du formulaire
+        form.action = `/messages/reply/${conversationId}`; // Mettre à jour l'action du formulaire
         form.style.display = 'block'; // Afficher le formulaire
     }
 </script>

@@ -878,8 +878,8 @@
     });
 </script>
 <body class="relative min-h-screen">
-@include('layouts.front.header')
-<main class="mt-64">
+@include('layouts.front.header-fixed')
+<main class="mt-44 min-h-screen">
     @yield('content')
 </main>
 @include('layouts.front.footer')
