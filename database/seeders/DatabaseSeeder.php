@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Departement;
-use App\Models\Image;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -30,7 +29,6 @@ class DatabaseSeeder extends Seeder
             RegionSeeder::class,
             DepartementSeeder::class,
             CitySeeder::class,
-            ImageSeeder::class,
             AdSeeder::class,
         ]);
     }

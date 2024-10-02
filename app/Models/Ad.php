@@ -9,17 +9,27 @@ class Ad extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
     protected $fillable = [
+        'user_id',
+        'category_id',
+        'city_id',
         'title',
         'status',
-        'excerpt',
         'description',
+        'excerpt',
         'price',
         'time_unity',
-        'category_id',
-        'user_id',
-        'city_id',
+        'picture_1',
+        'picture_2',
+        'picture_3',
     ];
+
+    public function exists():bool
+    {
+        return (bool) $this->id;
+    }
 
     public function category()
     {
@@ -36,13 +46,10 @@ class Ad extends Model
         return $this->belongsTo(City::class);
     }
 
-    public function image()
-    {
-        return $this->hasMany(Image::class);
-    }
-
     public function favorites()
     {
         return $this->belongsToMany(User::class, 'ad_user')->withTimestamps();
     }
+
+
 }

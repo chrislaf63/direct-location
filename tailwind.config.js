@@ -21,8 +21,14 @@ export default {
                 '4/5': '80%',
                 '60vh': '60vh',
             },
+            maxHeight: {
+                'header' : '118px',
+                '3/5': '60%',
+                '4/5': '80%',
+                '60vh': '60vh',
+            },
             height: {
-                'preview': '230px',
+                'preview': '250px',
                 'messages': 'calc(100vh - 182px)',
                 'withHeader': 'calc(100vh - 118px)',
                 'withFooter': 'calc(100vh - 234px)',

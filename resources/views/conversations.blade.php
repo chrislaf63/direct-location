@@ -7,6 +7,9 @@
         <div>
             <h3 class="py-4 font-semibold text-center border-b border-black/30">Vos conversations</h3>
         </div>
+        @if (count($conversations) == 0)
+        <p class="text-center text-sm text-gray-500 py-4">Vous n'avez pas de conversation</p>
+        @else
         <div id="announcements" class="flex-col-reverse">
             @foreach ($conversations as $conversation)
             <div
@@ -17,6 +20,7 @@
             </div>
             @endforeach
         </div>
+        @endif
     </div>
     <div class="flex flex-col justify-end w-1/2 h-messages">
         <div id="messages" class=" p-6 overflow-y-auto">
@@ -28,8 +32,8 @@
         <div class="relative">
             <form id="response-form" action="" method="POST" style="display: none;" class="ml-50">
                 @csrf
-                <input type="hidden" name="ad_id" value="{{ $conversation->ad->id }}">
-                <input type="hidden" name="receiver_id" value="{{ $conversation->ad->user_id }}">
+                <input type="hidden" name="ad_id" value="{{ !empty($conversation) ? $conversation->ad->id : '' }}">
+                <input type="hidden" name="receiver_id" value="{{  !empty($conversation) ? $conversation->ad->user_id : '' }}">
                 <input class="w-3/4 py-2.5 border-black/50 rounded-lg" type="text" name="content" placeholder="Votre message">
                 <button type="submit" class="bg-green-200 border-2 border-black/30 rounded-lg p-2.5 absolute left-250 hover:bg-green-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">

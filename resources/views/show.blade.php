@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div class="w-1/2 m-auto">
+<div class="w-conversations m-auto">
     <div class="mt-8 ml-10">
         <div class="flex justify-between"
-        <span class="mb-5">{{ $ad->city->departement->region->name }} > {{ $ad->city->departement->name }} > {{ $ad->city->name }} ({{ $ad->city->zip_code }})</span>
+        <span class="mb-5">{{ $ad->city->departement->region->name }} > {{ $ad->city->departement->name }} > {{ $ad->city->name }} ({{ $ad->city->zip_code }}) > {{ $ad->category->name }}</span>
 
         @auth
         <div class="favorite-container">
@@ -18,11 +18,18 @@
 
     <h2 class="font-semibold text-3xl mb-5">{{$ad->title}}</h2>
     <div class="flex gap-2 h-48 max-w-1/2 mx-5 mt-5 mb-8 rounded-lg ">
-        @foreach($ad->image as $image)
-        <img src="{{$image->source}}" alt="{{$ad->title}}" height="100%">
-        @endforeach
+        @if(!empty($ad->picture_1))
+        <img src="{{ asset('storage/'.$ad->picture_1) }}" alt="{{ $ad->title }}" height="100%">
+        @elseif(empty($ad->picture_1))
+        <img src="{{ asset('images/no-image.png') }}" alt="no image" height="100%">
+        @endif
+        @if(!empty($ad->picture_2))
+        <img src="{{ asset('storage/'.$ad->picture_2) }}" alt="{{ $ad->title }}" height="100%">
+        @endif
+        @if(!empty($ad->picture_3))
+        <img src="{{ asset('storage/'.$ad->picture_3) }}" alt="{{ $ad->title }}" height="100%">
+        @endif
     </div>
-
     <div>
         <p>{{ $ad->city->name }} ({{ $ad->city->zip_code }})</p>
         <p><span class="font-semibold">{{$ad->price}}€</span>&nbsp;/&nbsp;{{$ad->time_unity}}</p>

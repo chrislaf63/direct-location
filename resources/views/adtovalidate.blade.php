@@ -5,9 +5,17 @@
     <span class="mb-5">{{ $ad->city->departement->region->name }} > {{ $ad->city->departement->name }} > {{ $ad->city->name }} ({{ $ad->city->zip_code }})</span>
     <h2 class="font-semibold text-3xl mb-5">{{$ad->title}}</h2>
     <div class="flex gap-2 h-48 max-w-1/2 mx-5 mt-5 mb-8 rounded-lg ">
-        @foreach($ad->image as $image)
-        <img src="{{$image->source}}" alt="{{$ad->title}}" height="100%">
-        @endforeach
+        @if($ad->picture_1 != null)
+        <img src="{{ asset('storage/'.$ad->picture_1) }}" alt="{{$ad->title}}" height="100%">
+        @else
+        <img src="{{ asset('images/no-image.png') }}" alt="no image" class="h-full object-cover">
+        @endif
+        @if($ad->picture_2 != null)
+        <img src="{{ asset('storage/'.$ad->picture_2) }}" alt="{{$ad->title}}" height="100%">
+        @endif
+        @if($ad->picture_3 != null)
+        <img src="{{ asset('storage/'.$ad->picture_3) }}" alt="{{$ad->title}}" height="100%">
+        @endif
     </div>
 
     <div>

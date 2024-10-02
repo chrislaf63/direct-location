@@ -19,7 +19,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $recordedAds = $user->favorites()->count();
-        $myads = $user->ads->count();
+        $myads = $user->ads->where('status','=','published')->count();
         return view('profile', compact('user'), [
             'title' => 'Tableau de bord',
             'myads' => $myads,
@@ -63,11 +63,8 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
-
         Auth::logout();
-
         $user->delete();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

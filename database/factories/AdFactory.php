@@ -29,6 +29,9 @@ class AdFactory extends Factory
             'category_id' => $this->faker->numberBetween(1, 6),
             'user_id' => $this->faker->numberBetween(1, 10),
             'city_id' => $this->faker->numberBetween(1, 10),
+            'picture_1' => $this->faker->imageUrl(),
+            'picture_2' => $this->faker->imageUrl(),
+            'picture_3' => $this->faker->imageUrl(),
         ];
     }
 }
