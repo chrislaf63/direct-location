@@ -1,6 +1,6 @@
 <header class="border-b-black/50 border-b-2 fixed left-0 top-0 right-0 bg-white">
     {{-- Conteneur global --}}
-    <div class="lg:w-conversations m-auto flex max-h-header justify-around">
+    <div class="lg:w-conversations m-auto flex max-h-header justify-around relative">
         <div>
             <a href="{{ route('ad.index') }}"><img class="hidden lg:block" src="{{ asset('images/logo.png') }}" alt="logo"><img class="lg:hidden" src="{{ asset('images/logo-sm.png') }}" alt="logo du site"</a>
         </div>
@@ -109,13 +109,54 @@
                 <img src="{{ asset('images/burger.png') }}" alt="menu">
             </button>
         </div>
-        <div id="menu" class="lg:hidden absolute right-0 top-188 w-1/4 h-2/6 border border-black">
-
+        {{-- Menu déroulant --}}
+        <div id="menusm" class="lg:hidden absolute right-0 -bottom-[400px] w-1/4 border border-black bg-white">
+            <nav>
+                <ul class="flex flex-col justify-center gap-2 border-b">
+                    <li class="font-semibold border-b">Catégories</li>
+                    @foreach($categories as $category)
+                    <li class="text-center">
+                        <a href="{{ route('ad.category', ['category' => $category->slug]) }}">{{ $category->name }}</a>
+                    </li>
+                    @endforeach
+                </ul>
+                <ul class="flex flex-col justify-center gap-2">
+                    <li class="font-semibold">Compte</li>
+                    @guest
+                    <li class="text-center">
+                        <a href="{{ route('login') }}">Se connecter</a>
+                    </li>
+                    <li class="text-center">
+                        <a href="{{ route('register') }}">S'inscrire</a>
+                    </li>
+                    @endguest
+                    @auth
+                    <li class="text-center">
+                        <a href="{{ route('user') }}">{{ Auth::user()->name }}</a>
+                    </li>
+                    <li class="text-center">
+                        <a href="{{ route('conversations.index') }}">Messages</a>
+                    </li>
+                    <li class="text-center">
+                        <a href="{{ route('favorites') }}">Favoris</a>
+                    </li>
+                    <li class="text-center">
+                        <form method="post" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit">Déconnection</button>
+                        </form>
+                    </li>
+                    @endauth
+                </ul>
+                <ul>
+                    <li><a href="">Proposer</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
     <script>
         const burger = document.getElementById('burger');
-        const menu = document.getElementById('menu');
+        const menu = document.getElementById('menusm');
         burger.addEventListener('click', () => {
             menu.classList.toggle('hidden');
         });

@@ -12,7 +12,6 @@ class MessageController extends Controller
     public function create($id)
     {
         $ad = Ad::findOrFail($id);
-
         return view('messages', compact('ad'),
             [
                 'title' => 'Messages',
@@ -31,18 +30,6 @@ class MessageController extends Controller
         $user = auth()->user();
         $adId = $validated['ad_id'];
         $receiverId = $validated['receiver_id'];
-
-        // Vérifier si une conversation existe déjà entre l'utilisateur connecté et le destinataire V1
-//        $conversation = Conversation::whereHas('messages', function ($query) use ($user, $receiverId) {
-//            $query->where(function($q) use ($user, $receiverId) {
-//                $q->where('sender_id', $user->id)
-//                    ->where('receiver_id', $receiverId);
-//            })->orWhere(function($q) use ($user, $receiverId) {
-//                $q->where('sender_id', $receiverId)
-//                    ->where('receiver_id', $user->id);
-//            });
-//        })->where('ad_id', $adId)->first();
-
 
         // Vérifier si une conversation existe déjà entre l'utilisateur connecté et le destinataire
         $conversation = Conversation::where('ad_id', $adId)
@@ -70,7 +57,8 @@ class MessageController extends Controller
             'content' => $validated['content'],
         ]);
 
-        return response()->json($message);
+        $conversations = $conversation;
+        return redirect()->route('conversations.index', $conversations);
     }
 
     public function reply(Request $request, $conversationId)
@@ -99,6 +87,6 @@ class MessageController extends Controller
             'content' => $validated['content'],
         ]);
 
-        return response()->json($message);
+        return redirect()->route('conversations.index');
     }
 }

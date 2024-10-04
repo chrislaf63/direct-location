@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites');
 });
 
-Route::controller(AdminController::class)->middleware('auth')->group(function () {
+Route::controller(AdminController::class)->middleware(['auth', 'admin'])->group(function () {
     Route::get('admin', 'display')->name('admin');
     Route::get('admin/tovalidate', 'tovalidate')->name('admin.tovalidate');
     Route::get('admin/adtovalidate/{id}', 'show')->name('ad.tovalidate.show');
@@ -40,7 +40,6 @@ Route::controller(UserController::class)->middleware('auth')->group(function () 
     Route::get('users/{id}', 'edit')->name('user.edit');
     Route::put('users/{id}', 'update')->name('user.update');
     Route::delete('users/{id}', 'destroy')->name('user.destroy');
-
 });
 
 Route::get('/', [AdController::class, 'index'])->name('ad.index');
@@ -60,12 +59,11 @@ Route::controller(AdController::class)->middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations.index'); // Afficher la liste des conversations
-    Route::post('/conversations', [ConversationController::class, 'store'])->name('conversations.store'); // Créer une conversation
-    Route::get('/conversations/{conversation}', [ConversationController::class, 'show'])->name('conversations.show'); // Afficher une conversation
-    Route::get('/message/{id}', [MessageController::class, 'create'])->name('messages.create'); // Afficher le formulaire pour envoyer un message
-    Route::post('/messages/', [MessageController::class, 'store'])->name('messages.store'); // Envoyer un message
-    Route::post('/messages/reply/{conversationId}', [MessageController::class, 'reply'])->name('messages.reply'); // Envoyer un message
+    Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations.index');
+    Route::post('/conversations', [ConversationController::class, 'store'])->name('conversations.store');
+    Route::get('/message/{id}', [MessageController::class, 'create'])->name('messages.create');
+    Route::post('/messages/', [MessageController::class, 'store'])->name('messages.store');
+    Route::post('/messages/reply/{conversationId}', [MessageController::class, 'reply'])->name('messages.reply');
 });
 
 Route::get('/ad-data/{id}', function($id) {

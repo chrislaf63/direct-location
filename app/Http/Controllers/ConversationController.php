@@ -41,4 +41,5 @@ class ConversationController extends Controller
             'messages' => $messages
         ]);
     }
+
 }

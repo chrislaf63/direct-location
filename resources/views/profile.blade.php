@@ -64,9 +64,11 @@
     </div>
 </div>
 <div class="w-full">
-    <div class="w-1/4 m-auto">
-        <a href="{{ route('admin') }}"><button class="px-3 py-1 bg-[#FF2D20]/10">Acceder au dashboard admin</button></a>
-    </div>
+    @if(Auth::user()->isAdmin())
+        <div class="w-1/4 m-auto">
+            <a href="{{ route('admin') }}"><button class="px-3 py-1 bg-[#FF2D20]/10">Acceder au dashboard admin</button></a>
+        </div>
+    @endif
 </div>
 @stop
 
