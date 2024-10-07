@@ -26,7 +26,7 @@ return new class extends Migration
             $table->foreignId('city_id')
                 ->constrained()
                 ->onUpdate('cascade')
-                ->onDelete('set null');
+                ->nullOnDelete();
             $table->string('title');
             $table->enum('status', array('pending', 'published'));
             $table->string('excerpt');

@@ -49,7 +49,7 @@ class AdController extends Controller
     public function adsByCategory(Category $category)
     {
         return view('index', [
-            'ads' => $category->ads()->paginate(10),
+            'ads' => $category->ads()->where('status', '=', 'published')->latest()->paginate(10),
             'title' => 'Annonces de la catégorie ' . $category->name,
         ]);
     }
@@ -62,7 +62,7 @@ class AdController extends Controller
     public function myads()
     {
         $user = Auth::user();
-        $ads = $user->ads()->where('status','=','published')->paginate(10);
+        $ads = $user->ads()->where('status','=','published')->latest()->paginate(10);
         return view('my-ads', compact('ads'), [
             'title' => 'Mes annonces',
         ]);
@@ -111,25 +111,24 @@ class AdController extends Controller
 
     public function store(Request $request)
     {
-//        Validation rule
+        // Validation rule
         $request->validate([
             'user_id' => 'required',
             'departement' => 'required',
             'city' => 'required',
             'zip_code' => 'required',
-            'title' => 'required',
+            'title' => 'required|between:2,35',
             'description' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric',
             'time_unity' => 'required',
             'category' => 'required',
             'status' => 'required',
-            'picture_1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
-            'picture_2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
-            'picture_3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            'picture_1' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'picture_2' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'picture_3' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         // Create city if don't exist
-
         $city = City::firstOrCreate(
             [
                 'name' => $request->city,
@@ -145,7 +144,7 @@ class AdController extends Controller
         $ad->title = $request->title;
         $ad->status = $request->status;
         $ad->description = $request->description;
-        $ad->excerpt = substr($request->description, 0, 150);
+        $ad->excerpt = substr($request->description, 0, 75);
         $ad->price = $request->price;
         $ad->time_unity = $request->time_unity;
         $ad->category_id = $request->category;
@@ -173,15 +172,15 @@ class AdController extends Controller
             'departement' => 'required',
             'city' => 'required',
             'zip_code' => 'required',
-            'title' => 'required',
+            'title' => 'required|between:2,35',
             'description' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric',
             'time_unity' => 'required',
             'category' => 'required',
             'status' => 'required',
-            'picture_1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
-            'picture_2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
-            'picture_3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            'picture_1' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'picture_2' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'picture_3' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         // Create city if don't exist
@@ -202,7 +201,7 @@ class AdController extends Controller
         $ad->title = $request->title;
         $ad->status = $request->status;
         $ad->description = $request->description;
-        $ad->excerpt = substr($request->description, 0, 150);
+        $ad->excerpt = substr($request->description, 0, 75);
         $ad->price = $request->price;
         $ad->time_unity = $request->time_unity;
         $ad->category_id = $request->category;

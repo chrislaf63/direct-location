@@ -1,4 +1,4 @@
-<footer class="w-full static 4xl:absolute 4xl:bottom-0">
+<footer class="w-full h-footerMax static 4xl:absolute 4xl:bottom-0">
 <div class="w-full bg-[#038645] text-white flex justify-around">
     <div class="w-1/4">
         <img src="<?php __DIR__ ?>/images/logo2.png" alt="logo">

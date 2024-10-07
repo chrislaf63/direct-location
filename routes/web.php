@@ -19,12 +19,12 @@ Route::get('/profile/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::post('/favorites/add/{ad}', [FavoriteController::class, 'addFavorite'])->name('favorites.add');
-    Route::delete('/favorites/remove/{ad}', [FavoriteController::class, 'removeFavorite'])->name('favorites.remove');
-    Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites');
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('favorites/add/{ad}', [FavoriteController::class, 'addFavorite'])->name('favorites.add');
+    Route::delete('favorites/remove/{ad}', [FavoriteController::class, 'removeFavorite'])->name('favorites.remove');
+    Route::get('favorites', [FavoriteController::class, 'index'])->name('favorites');
 });
 
 Route::controller(AdminController::class)->middleware(['auth', 'admin'])->group(function () {
@@ -42,17 +42,18 @@ Route::controller(UserController::class)->middleware('auth')->group(function () 
     Route::delete('users/{id}', 'destroy')->name('user.destroy');
 });
 
-Route::get('/', [AdController::class, 'index'])->name('ad.index');
-Route::get('annonces/{id}', [AdController::class, 'show'])->name('ad.show');
-Route::get ('mes-annonces', [AdController::class, 'myads'])->name('ad.myads');
 Route::get('profile', [ProfileController::class, 'display'])->name('user');
-Route::get('annonces/categorie/{category}', [AdController::class, 'adsByCategory'])->name('ad.category');
+
+Route::controller(AdController::class)->group(function () {
+    Route::get('/', 'index')->name('ad.index');
+    Route::get('annonces/{id}', 'show')->name('ad.show');
+    Route::get('annonces/categorie/{category}', 'adsByCategory')->name('ad.category');
+});
 
 Route::controller(AdController::class)->middleware('auth')->group(function () {
+    Route::get('mes-annonces', 'myads')->name('ad.myads');
     Route::get('deposer-une-annonce', 'create')->name('ad.create');
     Route::post('annonces/deposer-une-annonce', 'store')->name('ad.store');
-    Route::put('annonces/{id}', 'update')->name('ad.update');
-    Route::delete('annonces/{ad}', 'destroy')->name('ad.destroy');
     Route::get('annonces/{ad}/edit', 'edit')->name('ad.edit');
     Route::put('annonces/{id}', 'update')->name('ad.update');
     Route::delete('annonces/{ad}', 'destroy')->name('ad.destroy');

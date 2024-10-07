@@ -858,10 +858,10 @@
     $(document).on('submit', '.favorite-form', function (e) {
         e.preventDefault();
 
-        var form = $(this);
-        var url = form.attr('action');
-        var method = form.find('input[name="_method"]').val() || 'POST'; // Définit le type de requête : POST ou DELETE
-        var data = form.serialize();
+        const form = $(this);
+        const url = form.attr('action');
+        const method = form.find('input[name="_method"]').val() || 'POST'; // Définit le type de requête : POST ou DELETE
+        const data = form.serialize();
 
         $.ajax({
             url: url,
@@ -877,9 +877,9 @@
         });
     });
 </script>
-<body class="relative min-h-screen">
+<body class="relative min-h-screen ">
 @include('layouts.front.header-fixed')
-<main class="mt-44 min-h-screen">
+<main class="pt-44 min-h-minHeaderAndFooter w-screen">
     @yield('content')
 </main>
 @include('layouts.front.footer')

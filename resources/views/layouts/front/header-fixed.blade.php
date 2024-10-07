@@ -1,6 +1,6 @@
 <header class="border-b-black/50 border-b-2 fixed left-0 top-0 right-0 bg-white">
     {{-- Conteneur global --}}
-    <div class="lg:w-conversations m-auto flex max-h-header justify-around relative">
+    <div class=" w-screen lg:w-conversations m-auto flex max-h-header justify-around relative">
         <div>
             <a href="{{ route('ad.index') }}"><img class="hidden lg:block" src="{{ asset('images/logo.png') }}" alt="logo"><img class="lg:hidden" src="{{ asset('images/logo-sm.png') }}" alt="logo du site"</a>
         </div>
@@ -43,7 +43,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/>
                     </svg>
-                    <a href="{{ route('login') }}">Se connecter</a>
+                    <a class="text-sm" href="{{ route('login') }}">Se connecter</a>
                 </div>
                 <div class="flex flex-col items-center w-28">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -110,10 +110,13 @@
             </button>
         </div>
         {{-- Menu déroulant --}}
-        <div id="menusm" class="lg:hidden absolute right-0 -bottom-[400px] w-1/4 border border-black bg-white">
+        <div id="menu-sm" class="lg:hidden absolute -right-[250px] top-0 w-[250px] border border-black bg-white">
             <nav>
                 <ul class="flex flex-col justify-center gap-2 border-b">
-                    <li class="font-semibold border-b">Catégories</li>
+                    <li class="flex justify-between font-semibold border-b"><div>Catégories</div><div id="close-menu"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg></div>
+                        </li>
                     @foreach($categories as $category)
                     <li class="text-center">
                         <a href="{{ route('ad.category', ['category' => $category->slug]) }}">{{ $category->name }}</a>
@@ -156,9 +159,27 @@
     </div>
     <script>
         const burger = document.getElementById('burger');
-        const menu = document.getElementById('menusm');
+        const menu = document.getElementById('menu-sm');
+        const close = document.getElementById('close-menu');
         burger.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
+            menu.animate([
+                {transform: 'translateX( 0px)'},
+                {transform: 'translateX( -250px)'}
+            ], {
+                duration: 500,
+                easing: 'ease-in-out',
+                fill: 'forwards'
+            });
+        });
+        close.addEventListener('click', () => {
+            menu.animate([
+                {transform: 'translateX( -250px)'},
+                {transform: 'translateX( 0px)'}
+            ], {
+                duration: 500,
+                easing: 'ease-in-out',
+                fill: 'forwards'
+            });
         });
     </script>
 </header>

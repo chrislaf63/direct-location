@@ -20,9 +20,9 @@ class AdFactory extends Factory
         $content = $this->faker->paragraphs(asText: true);
 
         return [
-            'title' => $this->faker->sentence(),
+            'title' => $this->faker->sentence(3),
             'status' => $this->faker->randomElement(['pending', 'published']),
-            'excerpt' => Str::limit($content, 150),
+            'excerpt' => Str::limit($content, 75),
             'description' => $content,
             'price' => $this->faker->randomFloat(2, 1, 1000),
             'time_unity' => $this->faker->randomElement(['heure', 'demi-journée', 'jour', 'semaine', 'mois', 'année']),

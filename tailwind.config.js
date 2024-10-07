@@ -20,6 +20,7 @@ export default {
                 '3/5': '60%',
                 '4/5': '80%',
                 '60vh': '60vh',
+                'minHeaderAndFooter': 'calc(100vh - 246px)',
             },
             maxHeight: {
                 'header' : '118px',
@@ -32,6 +33,7 @@ export default {
                 'messages': 'calc(100vh - 182px)',
                 'withHeader': 'calc(100vh - 118px)',
                 'withFooter': 'calc(100vh - 234px)',
+                'footerMax': '246px',
             },
             screens: {
                 '3xl': '1537px',
