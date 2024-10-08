@@ -33,10 +33,10 @@ Route::controller(AdminController::class)->middleware(['auth', 'admin'])->group(
     Route::get('admin/adtovalidate/{id}', 'show')->name('ad.tovalidate.show');
     Route::put('admin/adtovalidate/{id}', 'validate')->name('ad.validate');
     Route::delete('admin/adtovalidate/{id}', 'destroy')->name('ad.todestroy');
+    Route::get('admin/users', 'indexUsers')->name('users');
 });
 
 Route::controller(UserController::class)->middleware('auth')->group(function () {
-    Route::get('users', 'index')->name('users');
     Route::get('users/{id}', 'edit')->name('user.edit');
     Route::put('users/{id}', 'update')->name('user.update');
     Route::delete('users/{id}', 'destroy')->name('user.destroy');

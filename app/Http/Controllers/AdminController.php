@@ -64,4 +64,17 @@ class AdminController extends Controller
         $ad->delete();
         return redirect()->route('admin.tovalidate');
     }
+
+    public function indexUsers()
+    {
+        $nbwaitingads = Ad::where('status', 'pending')->count();
+        $nbpublishedads = Ad::where('status', 'published')->count();
+        $registeredusers = User::all()->count();
+        $users = User::all();
+        return view('users', compact('users'), [
+            'nbwaitingads' => $nbwaitingads,
+            'nbpublishedads' => $nbpublishedads,
+            'registeredusers' => $registeredusers,
+        ]);
+    }
 }

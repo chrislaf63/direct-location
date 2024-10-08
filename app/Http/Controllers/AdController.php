@@ -92,11 +92,21 @@ class AdController extends Controller
         return $this->showForm();
     }
 
+    /**
+     * Return ad creation form.
+     *
+     * @return View
+     */
     public function edit(Ad $ad)
     {
         return $this->showForm($ad);
     }
 
+    /**
+     * @param Ad $ad
+     *
+     * @return View
+     */
     protected function showForm(Ad $ad = new Ad): View
     {
         return view('create', [

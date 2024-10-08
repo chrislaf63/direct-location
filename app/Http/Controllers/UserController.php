@@ -8,18 +8,6 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function index()
-    {
-        $nbwaitingads = Ad::where('status', 'pending')->count();
-        $nbpublishedads = Ad::where('status', 'published')->count();
-        $registeredusers = User::all()->count();
-        $users = User::all();
-        return view('users', compact('users'), [
-            'nbwaitingads' => $nbwaitingads,
-            'nbpublishedads' => $nbpublishedads,
-            'registeredusers' => $registeredusers,
-            ]);
-    }
 
     public function edit(Request $request, $id)
     {
