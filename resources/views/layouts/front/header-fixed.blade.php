@@ -1,6 +1,6 @@
 <header class="border-b-black/50 border-b-2 fixed left-0 top-0 right-0 bg-white">
     {{-- Conteneur global --}}
-    <div class=" w-screen lg:w-conversations m-auto flex max-h-header justify-around relative">
+    <div class=" w-full lg:w-conversations m-auto flex max-h-header justify-around relative">
         <div>
             <a href="{{ route('ad.index') }}"><img class="hidden lg:block" src="{{ asset('images/logo.png') }}" alt="logo"><img class="lg:hidden" src="{{ asset('images/logo-sm.png') }}" alt="logo du site"</a>
         </div>
@@ -104,6 +104,7 @@
                 </nav>
             </div>
         </div>
+        {{-- Burger --}}
         <div class="block lg:hidden">
             <button id="burger" class="self-center">
                 <img src="{{ asset('images/burger.png') }}" alt="menu">

@@ -30,11 +30,11 @@
         <img src="{{ asset('storage/'.$ad->picture_3) }}" alt="{{ $ad->title }}" height="100%">
         @endif
     </div>
-    <div>
+    <div class="w-4/5">
         <p>{{ $ad->city->name }} ({{ $ad->city->zip_code }})</p>
         <p><span class="font-semibold">{{$ad->price}}€</span>&nbsp;/&nbsp;{{$ad->time_unity}}</p>
         <h3 class="font-semibold text-xl mb-2">Description</h3>
-        <p>{{$ad->description}}</p>
+        <p class>{{$ad->description}}</p>
 
         <p class="font-semibold">Contacter {{ $ad->user->name }}</p>
         <div>

@@ -1,10 +1,10 @@
 <header class="border-b-black/50 border-b-2">
     {{-- Conteneur global --}}
-    <div class="w-conversations m-auto flex">
+    <div class="w-full lg:w-conversations m-auto flex max-h-header justify-around relative">
         <div>
-            <a href="{{ route('ad.index') }}"><img src="{{ asset('images/logo.png') }}" alt="logo"></a>
+            <a href="{{ route('ad.index') }}"><img class="hidden lg:block" src="{{ asset('images/logo.png') }}" alt="logo"></a><img class="lg:hidden" src="{{ asset('images/logo-sm.png') }}" alt="logo du site"</a>
         </div>
-        <div class="flex flex-col justify-center gap-5 w-full">
+        <div class="hidden lg:flex flex-col justify-center gap-5 w-full">
             {{-- Partie supérieure du conteneur --}}
             <div class="flex justify-between ">
                 <div>
@@ -91,5 +91,83 @@
                 </nav>
             </div>
         </div>
+        {{-- Burger --}}
+        <div class="block lg:hidden">
+            <button id="burger" class="self-center">
+                <img src="{{ asset('images/burger.png') }}" alt="menu">
+            </button>
+        </div>
+        {{-- Menu déroulant --}}
+        <div id="menu-sm" class="lg:hidden absolute -right-[250px] top-0 w-[250px] border border-black bg-white">
+            <nav>
+                <ul class="flex flex-col justify-center gap-2 border-b">
+                    <li class="flex justify-between font-semibold border-b"><div>Catégories</div><div id="close-menu"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                            </svg></div>
+                    </li>
+                    @foreach($categories as $category)
+                    <li class="text-center">
+                        <a href="{{ route('ad.category', ['category' => $category->slug]) }}">{{ $category->name }}</a>
+                    </li>
+                    @endforeach
+                </ul>
+                <ul class="flex flex-col justify-center gap-2">
+                    <li class="font-semibold">Compte</li>
+                    @guest
+                    <li class="text-center">
+                        <a href="{{ route('login') }}">Se connecter</a>
+                    </li>
+                    <li class="text-center">
+                        <a href="{{ route('register') }}">S'inscrire</a>
+                    </li>
+                    @endguest
+                    @auth
+                    <li class="text-center">
+                        <a href="{{ route('user') }}">{{ Auth::user()->name }}</a>
+                    </li>
+                    <li class="text-center">
+                        <a href="{{ route('conversations.index') }}">Messages</a>
+                    </li>
+                    <li class="text-center">
+                        <a href="{{ route('favorites') }}">Favoris</a>
+                    </li>
+                    <li class="text-center">
+                        <form method="post" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit">Déconnection</button>
+                        </form>
+                    </li>
+                    @endauth
+                </ul>
+                <ul>
+                    <li><a href="">Proposer</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
+    <script>
+        const burger = document.getElementById('burger');
+        const menu = document.getElementById('menu-sm');
+        const close = document.getElementById('close-menu');
+        burger.addEventListener('click', () => {
+            menu.animate([
+                {transform: 'translateX( 0px)'},
+                {transform: 'translateX( -250px)'}
+            ], {
+                duration: 500,
+                easing: 'ease-in-out',
+                fill: 'forwards'
+            });
+        });
+        close.addEventListener('click', () => {
+            menu.animate([
+                {transform: 'translateX( -250px)'},
+                {transform: 'translateX( 0px)'}
+            ], {
+                duration: 500,
+                easing: 'ease-in-out',
+                fill: 'forwards'
+            });
+        });
+    </script>
 </header>

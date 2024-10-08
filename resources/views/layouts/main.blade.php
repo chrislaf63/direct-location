@@ -877,9 +877,9 @@
         });
     });
 </script>
-<body class="relative min-h-screen ">
+<body class="relative min-h-screen m-auto">
 @include('layouts.front.header-fixed')
-<main class="pt-44 min-h-minHeaderAndFooter w-screen">
+<main class="pt-44 min-h-minHeaderAndFooter w-full">
     @yield('content')
 </main>
 @include('layouts.front.footer')
