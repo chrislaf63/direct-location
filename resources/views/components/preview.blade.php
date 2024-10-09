@@ -29,7 +29,7 @@
             </a>
             @if($ad->user_id === Auth::id())
             <a href="{{ route('ad.edit', $ad->id) }}">
-                <button class="text-sm bg-indigo-50 px-3 py-1 rounded-lg shadow-md hover:bg-indigo-100 hover:shadow-lg lg:text-lg">Modifier l'annonce</button>
+                <button class="text-sm bg-indigo-50 px-3 py-1 rounded-lg shadow-md hover:bg-indigo-100 hover:shadow-lg lg:text-lg" aria-label="modifier annonce">Modifier l'annonce</button>
             </a>
             <button id="delete" class="text-sm bg-red-600 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-500 hover:shadow-lg lg:text-lg">Supprimer l'annonce</button>
             @endif
