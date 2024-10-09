@@ -133,9 +133,9 @@ class AdController extends Controller
             'time_unity' => 'required',
             'category' => 'required',
             'status' => 'required',
-            'picture_1' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'picture_2' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'picture_3' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'picture_1' => 'nullable|image|mimes:jpeg,png,jpg,webp',
+            'picture_2' => 'nullable|image|mimes:jpeg,png,jpg,webp',
+            'picture_3' => 'nullable|image|mimes:jpeg,png,jpg,webp',
         ]);
 
         // Create city if don't exist
@@ -188,9 +188,9 @@ class AdController extends Controller
             'time_unity' => 'required',
             'category' => 'required',
             'status' => 'required',
-            'picture_1' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'picture_2' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'picture_3' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'picture_1' => 'nullable|image|mimes:jpeg,png,jpg,webp',
+            'picture_2' => 'nullable|image|mimes:jpeg,png,jpg,webp',
+            'picture_3' => 'nullable|image|mimes:jpeg,png,jpg,webp',
         ]);
 
         // Create city if don't exist

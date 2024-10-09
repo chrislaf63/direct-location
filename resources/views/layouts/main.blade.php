@@ -879,7 +879,7 @@
 </script>
 <body class="relative min-h-screen m-auto">
 @include('layouts.front.header-fixed')
-<main class="pt-44 min-h-minHeaderAndFooter w-full">
+<main class="pt-headerMobile pb-footerMobile md:pt-headerDesktop md:pb-footerDesktop w-full">
     @yield('content')
 </main>
 @include('layouts.front.footer')

@@ -1,4 +1,6 @@
 <x-guest-layout>
+
+    <h1 class="text-center text-2xl py-4">Création de compte</h1>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 

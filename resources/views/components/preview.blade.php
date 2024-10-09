@@ -24,7 +24,7 @@
         <p class="mb-3"><span class="text-lg font-medium lg:text-2xl">{{$ad->price}}€</span>/&nbsp;{{$ad->time_unity}}</p>
         <p class="mb-6 text-sm">{{$ad->excerpt}}</p>
         <div class="flex justify-between mb-5">
-            <a href="{{ route('ad.show', $ad->id) }}">
+            <a href="{{ route($route, $ad->id) }}">
                 <button class="text-sm lg:text-lg bg-green-100 px-3 py-1 rounded-lg mb-1 shadow-md hover:bg-green-200 hover:shadow-lg ">Voir l'annonce</button>
             </a>
             @if($ad->user_id === Auth::id())

@@ -23,17 +23,20 @@ export default {
                 'minHeaderAndFooter': 'calc(100vh - 246px)',
             },
             maxHeight: {
-                'header' : '118px',
+                'headerDesktop' : '118px',
                 '3/5': '60%',
                 '4/5': '80%',
                 '60vh': '60vh',
             },
             height: {
+                'headerDesktop': '118px',
+                "headerMobile": '90px',
+                'footerDesktop': '246px',
+                'footerMobile': '376px',
                 'preview': '250px',
                 'messages': 'calc(100vh - 182px)',
                 'withHeader': 'calc(100vh - 118px)',
                 'withFooter': 'calc(100vh - 234px)',
-                'footerMax': '246px',
             },
             screens: {
                 '3xl': '1537px',
@@ -46,6 +49,12 @@ export default {
             },
             fontSize: {
                 'xs': '.75rem',
+            },
+            padding: {
+                'headerDesktop': '118px',
+                "headerMobile": '90px',
+                'footerDesktop': '246px',
+                'footerMobile': '376px',
             }
         },
     },

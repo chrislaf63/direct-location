@@ -1,6 +1,6 @@
-<header class="border-b-black/50 border-b-2 fixed left-0 top-0 right-0 bg-white">
+<header class="h-headerMobile md:h-headerDesktop border-b-black/50 border-b-2 fixed left-0 top-0 right-0 bg-white h-headerDesktop">
     {{-- Conteneur global --}}
-    <div class=" w-full lg:w-conversations m-auto flex max-h-header justify-around relative">
+    <div class=" w-full lg:w-conversations m-auto flex max-h-headerDesktop justify-around relative">
         <div>
             <a href="{{ route('ad.index') }}"><img class="hidden lg:block" src="{{ asset('images/logo.png') }}" alt="logo"><img class="lg:hidden" src="{{ asset('images/logo-sm.png') }}" alt="logo du site"</a>
         </div>
@@ -96,8 +96,7 @@
                     <ul class="flex justify-between w-full">
                         @foreach($categories as $category)
                         <li class="mr-4">
-                            <a href="{{ route('ad.category', ['category' => $category->slug]) }}">{{ $category->name
-                                }}</a>
+                            <a href="{{ route('ad.category', ['category' => $category->slug]) }}">{{ $category->name }}</a>
                         </li>
                         @endforeach
                     </ul>
@@ -113,38 +112,38 @@
         {{-- Menu déroulant --}}
         <div id="menu-sm" class="lg:hidden absolute -right-[250px] top-0 w-[250px] border border-black bg-white">
             <nav>
-                <ul class="flex flex-col justify-center gap-2 border-b">
-                    <li class="flex justify-between font-semibold border-b"><div>Catégories</div><div id="close-menu"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <ul class="flex flex-col justify-center gap-2 border-b-2 border-b-black">
+                    <li class="flex justify-between p-2 font-semibold border-b border-b-black/50"><div>Catégories</div><div id="close-menu" class="border-2 border-red-600 rounded-md bg-red-200 hover:cursor-pointer hover:bg-red-300"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                         </svg></div>
                         </li>
                     @foreach($categories as $category)
-                    <li class="text-center">
+                    <li class="text-center border-b black-20 hover:bg-green-50">
                         <a href="{{ route('ad.category', ['category' => $category->slug]) }}">{{ $category->name }}</a>
                     </li>
                     @endforeach
                 </ul>
                 <ul class="flex flex-col justify-center gap-2">
-                    <li class="font-semibold">Compte</li>
+                    <li class="font-semibold p-2 border-b border-b-black/50">Compte</li>
                     @guest
-                    <li class="text-center">
+                    <li class="text-center border-b black-20 hover:bg-green-50">
                         <a href="{{ route('login') }}">Se connecter</a>
                     </li>
-                    <li class="text-center">
+                    <li class="text-center border-b black-20 hover:bg-green-50">
                         <a href="{{ route('register') }}">S'inscrire</a>
                     </li>
                     @endguest
                     @auth
-                    <li class="text-center">
+                    <li class="text-center border-b black-20 hover:bg-green-50">
                         <a href="{{ route('user') }}">{{ Auth::user()->name }}</a>
                     </li>
-                    <li class="text-center">
+                    <li class="text-center border-b black-20 hover:bg-green-50">
                         <a href="{{ route('conversations.index') }}">Messages</a>
                     </li>
-                    <li class="text-center">
+                    <li class="text-center border-b black-20 hover:bg-green-50">
                         <a href="{{ route('favorites') }}">Favoris</a>
                     </li>
-                    <li class="text-center">
+                    <li class="text-center border-b black-20 hover:bg-green-50">
                         <form method="post" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit">Déconnection</button>
@@ -153,7 +152,7 @@
                     @endauth
                 </ul>
                 <ul>
-                    <li><a href="">Proposer</a></li>
+                    <li class="p-2 font-semibold"><a href="{{ route('ad.create') }}">Proposer une location</a></li>
                 </ul>
             </nav>
         </div>
