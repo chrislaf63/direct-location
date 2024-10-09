@@ -877,12 +877,33 @@
         });
     });
 </script>
-<body class="relative min-h-screen m-auto">
+<body class="antialiased relative min-h-screen m-auto">
 @include('layouts.front.header-fixed')
 <main class="pt-headerMobile pb-footerMobile md:pt-headerDesktop md:pb-footerDesktop w-full">
     @yield('content')
 </main>
 @include('layouts.front.footer')
+<script>
+    const back = document.getElementById('back');
+    const confirm = document.getElementById('confirm');
+    const target = document.getElementById('target');
+    const modal = document.getElementById('modal');
+    const del = document.getElementById('delete');
+
+    del.addEventListener(('click'), () => {
+        target.classList.add('hidden');
+        modal.classList.remove('hidden');
+    });
+
+    back.addEventListener(('click'), () => {
+        target.classList.remove('hidden');
+        modal.classList.add('hidden');
+    });
+
+    confirm.addEventListener(('click'), () => {
+        document.getElementById('delete-form').submit();
+    });
+</script>
 </body>
 </html>
 

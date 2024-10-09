@@ -1,11 +1,11 @@
 {{-- Preview component for ads --}}
-<div class="flex flex-col m-auto w-[350px] sm:w-[450px] lg:flex-row  lg:w-[900px] lg:h-preview overflow-hidden border-2 border-gray-400 rounded-xl shadow-xl">
+<div class="flex flex-col  bg-neutral-50 m-auto w-previewSmall sm:w-previewMedium lg:flex-row  lg:w-previewLarge lg:h-previewHLarge overflow-hidden border-2 border-gray-400 rounded-xl shadow-xl">
     {{-- Image --}}
-    <div class=" w-2/3 md:w-1/3 overflow-hidden self-center ">
+    <div class="bg-green-50 border border-black/30 rounded-xl h w-imagePrevLgw h-imagePrevLg overflow-hidden self-center my-3 md:ml-1 lg:my-0">
         @if(!empty($ad->picture_1))
-        <img src="{{ asset('storage/'.$ad->picture_1) }}" alt="{{$ad->title}}" class="h-full object-cover">
+        <img class="object-contain w-imagePrevLgw h-imagePrevLg rounded-xl" src="{{ asset('storage/'.$ad->picture_1) }}" alt="{{$ad->title}}">
         @elseif(empty($ad->picture_1))
-        <img src="{{ asset('images/no-image.png') }}" alt="no image" class="h-full object-cover">
+        <img class="rounded-xl" src="{{ asset('images/no-image.png') }}" alt="no image">
         @endif
     </div>
     {{-- Content --}}
@@ -25,15 +25,13 @@
         <p class="mb-6 text-sm">{{$ad->excerpt}}</p>
         <div class="flex justify-between mb-5">
             <a href="{{ route($route, $ad->id) }}">
-                <button class="text-sm lg:text-lg bg-green-100 px-3 py-1 rounded-lg mb-1 shadow-md hover:bg-green-200 hover:shadow-lg ">Voir l'annonce</button>
+                <button class="text-sm bg-green-100 px-3 py-1 rounded-lg mb-1 shadow-md hover:bg-green-200 hover:shadow-lg lg:text-lg">Voir l'annonce</button>
             </a>
             @if($ad->user_id === Auth::id())
             <a href="{{ route('ad.edit', $ad->id) }}">
-                <button class="text-sm lg:text-lg bg-indigo-50 px-3 py-1 rounded-lg shadow-md hover:bg-indigo-100 hover:shadow-lg">Modifier l'annonce</button>
+                <button class="text-sm bg-indigo-50 px-3 py-1 rounded-lg shadow-md hover:bg-indigo-100 hover:shadow-lg lg:text-lg">Modifier l'annonce</button>
             </a>
-            <a class="text-sm lg:text-lg" href="{{ route('ad.destroy', $ad->id) }}">
-                <x-delete :route="route('ad.destroy', $ad->id)" content="Supprimer l'annonce" />
-            </a>
+            <button id="delete" class="text-sm bg-red-600 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-500 hover:shadow-lg lg:text-lg">Supprimer l'annonce</button>
             @endif
         </div>
         <p class="mt-2 text-sm" >{{ $ad->category->name }}</p>
