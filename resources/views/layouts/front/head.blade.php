@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{$title}}</title>
 
     <!-- Fonts -->
@@ -853,91 +851,3 @@
     </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-
-<body class="relative h-screen">
-@include('layouts.front.header-static')
-<main class="h-withHeader" >
-    @yield('content')
-</main>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        console.log('DOM chargé');
-
-        let firstActive = document.querySelector('.ad-item.bg-green-300'); // Chercher l'élément actif
-
-        // Si une conversation est déjà active, récupérer directement les messages
-        if (firstActive) {
-            let adId = firstActive.getAttribute('data-ad-id');
-            let conversationId = firstActive.getAttribute('data-conversation-id');
-
-            console.log('Dernière conversation sélectionnée:', adId, conversationId);
-
-            // Charger directement les messages de la conversation active
-            fetch(`/conversations/${conversationId}/messages`)
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Messages reçus:', data);
-                    renderMessages(data);
-                    showResponseForm(conversationId);  // Afficher le formulaire de réponse
-                })
-                .catch(error => console.error('Erreur lors de la récupération des messages:', error));
-        }
-
-        let adItems = document.querySelectorAll('.ad-item');
-
-        adItems.forEach(item => {
-            item.addEventListener('click', function() {
-                let adId = this.getAttribute('data-ad-id');
-                let conversationId = this.getAttribute('data-conversation-id');
-
-                console.log('Annonce sélectionnée:', adId, conversationId);
-
-                // Retirer la classe active de toutes les annonces
-                document.querySelectorAll('.ad-item').forEach(el => {
-                    el.classList.remove('bg-green-300');
-                });
-
-                // Ajouter la classe active à l'annonce sélectionnée
-                this.classList.add('bg-green-300');
-
-                // Récupérer les messages via AJAX pour la conversation correspondante
-                fetch(`/conversations/${conversationId}/messages`)
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Messages reçus:', data);
-                        renderMessages(data);
-                        showResponseForm(conversationId);  // Afficher le formulaire de réponse
-                    })
-                    .catch(error => console.error('Erreur lors de la récupération des messages:', error));
-            });
-        });
-    });
-
-    function renderMessages(data) {
-        let messagesContainer = document.getElementById('message-container');
-        messagesContainer.innerHTML = '';  // Vider les messages actuels
-
-        data.messages.forEach(message => {
-            let messageDiv = document.createElement('div');
-
-            // Vérifier si l'utilisateur est l'auteur du message
-            if (message.sender_id === {{ auth()->user()->id }}) {
-                messageDiv.classList.add('message', 'bg-green-200', 'self-end', 'rounded-l-lg', 'rounded-tr-lg', 'p-3', 'mb-4', 'w-auto', 'max-w-xs', 'text-right');
-            } else {
-                messageDiv.classList.add('message', 'bg-white', 'self-start', 'rounded-r-lg', 'rounded-tl-lg', 'p-3', 'mb-4', 'w-auto', 'max-w-xs', 'text-left', 'border-2', 'border-black/20');
-            }
-
-            messageDiv.innerText = message.content;
-            messagesContainer.appendChild(messageDiv);
-        });
-    }
-
-    // Fonction pour afficher le formulaire de réponse
-    function showResponseForm(conversationId) {
-        const form = document.getElementById('response-form');
-        form.action = `/messages/reply/${conversationId}`; // Mettre à jour l'action du formulaire
-        form.style.display = 'block'; // Afficher le formulaire
-    }
-</script>
-</body>
-</html>

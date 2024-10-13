@@ -126,16 +126,16 @@ class AdController extends Controller
             'user_id' => 'required',
             'departement' => 'required',
             'city' => 'required',
-            'zip_code' => 'required',
+            'zip_code' => 'required|numeric',
             'title' => 'required|between:2,35',
             'description' => 'required',
             'price' => 'required|numeric',
             'time_unity' => 'required',
             'category' => 'required',
             'status' => 'required',
-            'picture_1' => 'nullable|image|mimes:jpeg,png,jpg,webp',
-            'picture_2' => 'nullable|image|mimes:jpeg,png,jpg,webp',
-            'picture_3' => 'nullable|image|mimes:jpeg,png,jpg,webp',
+            'picture_1' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'picture_2' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'picture_3' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         // Create city if don't exist
@@ -181,16 +181,16 @@ class AdController extends Controller
             'user_id' => 'required',
             'departement' => 'required',
             'city' => 'required',
-            'zip_code' => 'required',
+            'zip_code' => 'required|numeric',
             'title' => 'required|between:2,35',
             'description' => 'required',
             'price' => 'required|numeric',
             'time_unity' => 'required',
             'category' => 'required',
             'status' => 'required',
-            'picture_1' => 'nullable|image|mimes:jpeg,png,jpg,webp',
-            'picture_2' => 'nullable|image|mimes:jpeg,png,jpg,webp',
-            'picture_3' => 'nullable|image|mimes:jpeg,png,jpg,webp',
+            'picture_1' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'picture_2' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'picture_3' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         // Create city if don't exist
@@ -256,7 +256,11 @@ class AdController extends Controller
             Storage::delete($ad->picture_3);
         }
         $ad->delete();
+        if(request()->is('/mes-annonces/*')) {
         return redirect()->route('ad.myads')->with('success', 'Annonce supprimée avec succès');
+        } else {
+            return redirect()->route('admin')->with('success', 'Annonce supprimée avec succès');
+        }
     }
 
 }

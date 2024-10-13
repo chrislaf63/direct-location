@@ -25,7 +25,7 @@
                         <input id="search" value="{{ request()->search }}"
                                class="bg-indigo-50 px-2 w-full outline-none leading-none placeholder-slate-400 border-none focus:outline-none focus:ring-0"
                                type="search" name="search" placeholder="Rechercher une location">
-                        <button>
+                        <button aria-label="Lancer la recherche">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                                  class="w-4 h-4">
                                 <path fill-rule="evenodd"
@@ -51,7 +51,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"/>
                     </svg>
-                    <a class="text-sm" href="{{ route('register') }}">S'inscrire</a>
+                    <a class="text-sm hover:opacity-50" href="{{ route('register') }}">S'inscrire</a>
                 </div>
                 @endguest
                 @auth
@@ -61,13 +61,13 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                     </svg>
-                    <a class="text-xs mt-1" href="{{ route('user') }}">{{ Auth::user()->name }}<a>
+                    <a class="text-xs mt-1 hover:opacity-50" href="{{ route('user') }}">{{ Auth::user()->name }}<a>
                 </div>
                 <div class="flex flex-col items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
                     </svg>
-                    <a class="text-xs mt-1" href="{{ route('conversations.index') }}">Messages</a>
+                    <a class="text-xs mt-1 hover:opacity-50" href="{{ route('conversations.index') }}">Messages</a>
                 </div>
                 <div class="flex flex-col items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -75,7 +75,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>
                     </svg>
-                    <a class="text-xs mt-1" href="{{ route('favorites') }}">Favoris</a>
+                    <a class="text-xs mt-1 hover:opacity-50" href="{{ route('favorites') }}">Favoris</a>
                 </div>
                 <div class="flex flex-col items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -85,7 +85,7 @@
                     </svg>
                     <form method="post" action="{{ route('logout') }}">
                         @csrf
-                        <button class="text-xs" type="submit">Déconnection</button>
+                        <button class="text-xs hover:opacity-50" type="submit">Déconnection</button>
                     </form>
                 </div>
                 @endauth
@@ -95,7 +95,7 @@
                 <nav class="flex justify-between w-full">
                     <ul class="flex justify-between w-full">
                         @foreach($categories as $category)
-                        <li class="mr-4">
+                        <li class="mr-4 hover:opacity-50">
                             <a href="{{ route('ad.category', ['category' => $category->slug]) }}">{{ $category->name }}</a>
                         </li>
                         @endforeach
@@ -113,7 +113,7 @@
         <div id="menu-sm" class="lg:hidden absolute -right-[250px] top-0 w-[250px] border border-black bg-white">
             <nav>
                 <ul class="flex flex-col justify-center gap-2 border-b-2 border-b-black">
-                    <li class="flex justify-between p-2 font-semibold border-b border-b-black/50"><div>Catégories</div><div id="close-menu" class="border-2 border-red-600 rounded-md bg-red-200 hover:cursor-pointer hover:bg-red-300"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <li class="flex justify-between p-2 font-semibold border-b border-b-black/50"><div>Catégories</div><div id="close-menu" class="border-2 border-red-400 text-red-400 rounded-md bg-gray-200 hover:cursor-pointer hover:bg-red-300 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                         </svg></div>
                         </li>
@@ -153,6 +153,20 @@
                 </ul>
                 <ul>
                     <li class="p-2 font-semibold"><a href="{{ route('ad.create') }}">Proposer une location</a></li>
+                    <li class="p-2 font-semibold"><form action="{{ route('ad.index') }}"
+                                                        class="pb-1 pr-2 bg-indigo-50 rounded-lg flex items-center border border-slate-300 text-slate-300 shadow-md focus-within:border-slate-400 focus-within:text-slate-900 transition focus-within:shadow-lg">
+                            <input id="search" value="{{ request()->search }}"
+                                   class="bg-indigo-50 px-2 w-full outline-none leading-none placeholder-slate-400 border-none focus:outline-none focus:ring-0"
+                                   type="search" name="search" placeholder="Rechercher une location">
+                            <button aria-label="Lancer la recherche">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                     class="w-4 h-4">
+                                    <path fill-rule="evenodd"
+                                          d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                                          clip-rule="evenodd"/>
+                                </svg>
+                            </button>
+                        </form></li>
                 </ul>
             </nav>
         </div>

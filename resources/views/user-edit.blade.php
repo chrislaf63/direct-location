@@ -1,8 +1,12 @@
-@extends (request()->query('from') == 'users' ? 'layouts.admin' : 'layouts.main')
+@extends ('layouts.main')
 
 @section('content')
-<h2 class="text-center font-semibold text-3xl mb-10">Modifier un utilisateur</h2>
-<form method="post" action="{{ route('user.update', $user->id) }}" class="w-3/4 m-auto border-2 border-gray-300 rounded-xl p-5">
+@if (request()->query('from') == 'users')
+<h2 class="text-center font-semibold text-3xl py-8">Modifier un utilisateur</h2>
+@else
+<h2 class="text-center font-semibold text-3xl py-8">Modifier mon profil</h2>
+@endif
+<form method="post" action="{{ route('user.update', $user->id) }}" class="w-1/3 m-auto mb-4 bg-neutral-50 border-2 border-gray-300 rounded-xl p-5">
     @csrf
     @method('PUT')
     <div class="mb-5">
@@ -22,6 +26,6 @@
         </select>
     </div>
     @endif
-    <button type="submit" class="bg-blue-900 text-white px-3 py-1 rounded-lg">Modifier</button>
+    <button type="submit" class="bg-blue-900 text-white px-3 py-1 shadow-md rounded-lg hover:bg-blue-800 hover:shadow-lg">Modifier</button>
 </form>
 @stop

@@ -15,18 +15,19 @@ return new class extends Migration
 
         Schema::create('ads', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreignId('category_id')
                 ->nullable()
                 ->constrained()
                 ->nullOnDelete();
-            $table->foreignId('user_id')
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreignId('city_id')
-                ->constrained()
-                ->onUpdate('cascade')
-                ->nullOnDelete();
+            $table->unsignedBigInteger('city_id');
+            $table->foreign('city_id')
+                ->references('id')
+                ->on('cities')
+                ->OnDelete('set null');
             $table->string('title');
             $table->enum('status', array('pending', 'published'));
             $table->string('excerpt');

@@ -71,7 +71,7 @@
          class="hidden bg-gray-200 border border-black/20 rounded-xl shadow-xl m-auto my-5 py-4 md:w-profileDesktop">
         <h2>Attention</h2>
         <p>Votre compte va être supprimé</p>
-        <p>Souhaitez-vous vraiement continuer ?</p>
+        <p>Souhaitez-vous vraiment continuer ?</p>
         <div class="flex justify-around">
             <form action="{{ route('user.destroy', $user->id) }}" method="post">
                 @method('delete')

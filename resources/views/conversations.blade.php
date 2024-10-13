@@ -13,7 +13,7 @@
         <div id="announcements" class="flex-col-reverse">
             @foreach ($conversations as $conversation)
             <div
-                class="ad-item @if ($lastConversation && $lastConversation->id == $conversation->id) bg-gray-300 @endif p-4 cursor-pointer text-center text-sm hover:bg-gray-200"
+                class="ad-item @if ($lastConversation && $lastConversation->id == $conversation->id) bg-green-300 @endif p-4 cursor-pointer text-center text-sm hover:bg-green-200"
                 data-ad-id="{{ $conversation->ad->id }}"
                 data-conversation-id="{{ $conversation->id }}">
                 {{ $conversation->ad->title }}

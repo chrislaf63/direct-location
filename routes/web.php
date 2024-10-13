@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdController;
-use App\Http\Controllers\admincontroller;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ConversationController;
@@ -35,11 +35,11 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(AdminController::class)->middleware(['auth', 'admin'])->group(function () {
     Route::get('admin', 'display')->name('admin');
-    Route::get('admin/tovalidate', 'tovalidate')->name('admin.tovalidate');
-    Route::get('admin/adtovalidate/{id}', 'show')->name('ad.tovalidate.show');
-    Route::put('admin/adtovalidate/{id}', 'validate')->name('ad.validate');
-    Route::delete('admin/adtovalidate/{id}', 'destroy')->name('ad.todestroy');
-    Route::get('admin/users', 'indexUsers')->name('users');
+    Route::get('admin/annonces-en-attente-de-validation', 'tovalidate')->name('admin.tovalidate');
+    Route::get('admin/annonces-en-attente-de-validation/{id}', 'show')->name('ad.tovalidate.show');
+    Route::put('admin/annonces-en-attente-de-validation/{id}', 'validate')->name('ad.validate');
+    Route::delete('admin/annonces-en-attente-de-validation/{id}', 'destroy')->name('ad.todestroy');
+    Route::get('admin/liste-des-utilisateurs', 'indexUsers')->name('users');
 });
 
 Route::get('profile', [ProfileController::class, 'display'])->name('user');
