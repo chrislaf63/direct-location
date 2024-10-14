@@ -28,7 +28,7 @@
 <body class="antialiased relative min-h-screen m-auto">
 @include('layouts.front.header-fixed')
 <main class="pt-headerMobile pb-footerMobile md:pt-headerDesktop md:pb-footerDesktop w-full">
-    @yield('content')
+    {{ $slot }}
 </main>
 @include('layouts.front.footer')
 @include('layouts.front.modal-script')

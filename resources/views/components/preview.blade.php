@@ -14,10 +14,12 @@
             <div><p class="text-lg font-semibold mb-1 pt-2 lg:text-2xl">{{$ad->title}}</p></div>
             <div class="ml-auto">
                 @auth
+                @if((request()->is('/')) || (request()->is('favorites')) || (request()->is('annonces/categorie/*')))
                 <div class="favorite-container">
                     {{-- Favorite button --}}
                     @include('partials.favorite-button', ['ad' => $ad])
                 </div>
+                @endif
                 @endauth
             </div>
         </div>
