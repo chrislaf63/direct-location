@@ -5,14 +5,14 @@
         @if(!empty($ad->picture_1))
         <img class="object-contain w-imagePrevLgw h-imagePrevLg rounded-xl" src="{{ asset('storage/'.$ad->picture_1) }}" alt="{{$ad->title}}">
         @elseif(empty($ad->picture_1))
-        <img class="rounded-xl" src="{{ asset('images/no-image.png') }}" alt="no image">
+        <img class="object-contain w-imagePrevLgw h-imagePrevLg rounded-xl" src="{{ asset('images/no-image.png') }}" alt="no image">
         @endif
     </div>
     {{-- Content --}}
-    <div class="lg:w-2/3 pr-3 ml-6 self-center lg:self-end">
+    <div class=" w-full lg:w-2/3 pr-3 ml-6 self-start lg:self-end">
         <div class="flex justify-between">
             <div><p class="text-lg font-semibold mb-1 pt-2 lg:text-2xl">{{$ad->title}}</p></div>
-            <div class="ml-auto">
+            <div class="mr-6 lg:mr-2">
                 @auth
                 @if((request()->is('/')) || (request()->is('favorites')) || (request()->is('annonces/categorie/*')))
                 <div class="favorite-container">

@@ -41,6 +41,5 @@
         </div>
 
 </main>
-@include('layouts.front.modal-script')
 </body>
 </html>

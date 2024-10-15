@@ -8,7 +8,7 @@
             <p class="text-center mb-2"><a href="">Qui sommes-nous ?</a></p>
             <p class="text-center mb-2"><a href="">Pourquoi ce site ?</a></p>
             <p class="text-center mb-2"><a href="">FAQ</a></p>
-            <p class="text-center mb-2"><a href="">Nous contacter</a></p>
+            <p class="text-center mb-2"><a href="mailto:contact@direct-location.fr">Nous contacter</a></p>
         </div>
         <div class="lg:w-1/4">
             <h3 class=" uppercase text-xl font-semibold underline text-center pt-8 mb-4">Informations légales</h3>

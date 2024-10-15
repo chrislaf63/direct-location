@@ -24,8 +24,11 @@
             class="flex flex-col w-previewSmall sm:w-previewMedium border-2 border-gray-200 py-8 px-4 rounded-2xl shadow-lg">
             <h2 class="font-semibold text-2xl mb-3">Récapitulatif de l'annonce</h2>
             <div class="h-28 mb-5">
+                @if(!empty($ad->picture_1))
                 <img class="object-contain h-28" src="{{ asset('storage/'.$ad->picture_1) }}">
-            </div>
+                @else
+                <img class="object-contain h-28" src="{{ asset('images/no-image.png') }}">
+                @endif
             <h3 class="mb-2 font-semibold text-lg">{{ $ad->title }}</h3>
             <p class="mb-4"><span class="font-semibold">{{ $ad->price }}€</span>&nbsp;/&nbsp;{{ $ad->time_unity }}</p>
             <p class="text-sm mb-2">Publiée le {{ $ad->created_at }}</p>

@@ -70,7 +70,7 @@
                 <p class="font-semibold">Contacter {{ $ad->user->name }}</p>
                 <div>
                     <a href="{{ route('messages.create', $ad->id) }}">
-                        <button class="mb-2 bg-green-500 text-white px-3 py-1 rounded-lg">Envoyer un message</button>
+                        <button class="mb-2 bg-green-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-green-400 shadow-lg">Envoyer un message</button>
                     </a>
                     <button class="mb-2 bg-green-500 text-white px-3 py-1 rounded-lg">Appeler</button>
                 </div>

@@ -24,7 +24,7 @@
                           class="pb-1 pr-2 bg-indigo-50 rounded-lg flex items-center border border-slate-300 text-slate-300 shadow-md focus-within:border-slate-400 focus-within:text-slate-900 transition focus-within:shadow-lg">
                         <input id="search" value="{{ request()->search }}"
                                class="bg-indigo-50 px-2 w-full outline-none leading-none placeholder-slate-400 border-none focus:outline-none focus:ring-0"
-                               type="search" name="search" placeholder="Rechercher une location">
+                               type="search" name="search" placeholder="Recherche rapide">
                         <button aria-label="Lancer la recherche">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                                  class="w-4 h-4">
@@ -41,7 +41,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                     </svg>
-                    <a class="text-sm" href="{{ route('login') }}">Filtres</a>
+                    <a class="text-sm" href="{{ route('ad.advanced-search') }}">Filtres</a>
                 </div>
                 <div class="flex flex-col items-center w-28">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -65,7 +65,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                     </svg>
-                    <a class="text-xs mt-1 hover:opacity-50" href="{{ route('ad.advanced-search1') }}">Filtres</a>
+                    <a class="text-xs mt-1 hover:opacity-50" href="{{ route('ad.advanced-search') }}">Filtres</a>
                 </div>
                 <div class="flex flex-col items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -169,7 +169,7 @@
                                                         class="pb-1 pr-2 bg-indigo-50 rounded-lg flex items-center border border-slate-300 text-slate-300 shadow-md focus-within:border-slate-400 focus-within:text-slate-900 transition focus-within:shadow-lg">
                             <input id="search" value="{{ request()->search }}"
                                    class="bg-indigo-50 px-2 w-full outline-none leading-none placeholder-slate-400 border-none focus:outline-none focus:ring-0"
-                                   type="search" name="search" placeholder="Rechercher une location">
+                                   type="search" name="search" placeholder="Recherche rapide">
                             <button aria-label="Lancer la recherche">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                                      class="w-4 h-4">
@@ -179,6 +179,7 @@
                                 </svg>
                             </button>
                         </form></li>
+                    <li><a href="{{ route('ad.advanced-search') }}">Recherche avancée</a></li>
                 </ul>
             </nav>
         </div>

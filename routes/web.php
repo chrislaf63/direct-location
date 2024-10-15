@@ -65,15 +65,8 @@ Route::controller(AdController::class)->middleware('auth')->group(function () {
 });
 
 Route::controller(AdvancedSearchController::class)->group(function () {
-    Route::get('recherche-avancee/region', 'searchFormStep1')->name('ad.advanced-search1');
-    Route::post('recherche-avancee/region', 'searchStep1')->name('advanced-search1');
-    Route::get('recherche-avancee/departement', 'SearchFormStep2')->name('ad.advanced-search2');
-    Route::post('recherche-avancee/departement', 'searchStep2')->name('advanced-search2');
-    Route::get('recherche-avancee/categorie', 'searchFormStep3')->name('ad.advanced-search3');
-    Route::post('recherche-avancee/categorie', 'searchStep3')->name('advanced-search3');
-    Route::get('recherche-avancee/mot-cle', 'searchFormStep4')->name('ad.advanced-search4');
-    Route::post('recherche-avancee/mot-cle', 'searchStep4')->name('advanced-search4');
-    Route::get('recherche-avancee/resultats', 'searchResults')->name('ad.advanced-search-results');
+    Route::get('recherche-avancee', 'searchForm')->name('ad.advanced-search');
+    Route::post('recherche-avancee', 'search')->name('advanced-search');
 });
 
 
