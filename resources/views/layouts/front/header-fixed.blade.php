@@ -1,6 +1,6 @@
 <header class="h-headerMobile md:h-headerDesktop border-b-black/50 border-b-2 fixed left-0 top-0 right-0 bg-white h-headerDesktop">
     {{-- Conteneur global --}}
-    <div class=" w-full lg:w-conversations m-auto flex max-h-headerDesktop justify-around relative">
+    <div class=" w-full lg:w-headerWDesktop m-auto flex max-h-headerDesktop justify-around relative">
         <div>
             <a href="{{ route('ad.index') }}"><img class="hidden lg:block" src="{{ asset('images/logo.png') }}" alt="logo"><img class="lg:hidden" src="{{ asset('images/logo-sm.png') }}" alt="logo du site"</a>
         </div>
@@ -10,7 +10,7 @@
                 <div>
                     <a href="{{ route('ad.create') }}">
                         <button
-                            class="bg-green-600 text-white px-3 flex items-center justify-center px-3 py-2 rounded-lg shadow-md hover:bg-green-500 hover:shadow-lg">
+                            class="bg-green-600 text-white px-3 flex items-center justify-center py-2 rounded-lg shadow-md hover:bg-green-500 hover:shadow-lg">
                             <span class="text-sm">Proposer une location&nbsp;&nbsp;</span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor" class="size-6">
@@ -38,6 +38,12 @@
                 {{-- Icônes de navigation --}}
                 @guest
                 <div class="flex flex-col items-center w-28">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                    <a class="text-sm" href="{{ route('login') }}">Filtres</a>
+                </div>
+                <div class="flex flex-col items-center w-28">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -55,6 +61,12 @@
                 </div>
                 @endguest
                 @auth
+                <div class="flex flex-col items-center w-28">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                    <a class="text-xs mt-1 hover:opacity-50" href="{{ route('ad.advanced-search1') }}">Filtres</a>
+                </div>
                 <div class="flex flex-col items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="size-6">

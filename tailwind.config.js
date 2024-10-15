@@ -29,7 +29,7 @@ export default {
                 '60vh': '60vh',
             },
             height: {
-                'headerDesktop': '118px',
+                'headerDesktop': '125px',
                 "headerMobile": '90px',
                 'footerDesktop': '246px',
                 'footerMobile': '376px',
@@ -44,8 +44,7 @@ export default {
                 '4xl': '1921px', // Définit le breakpoint XXL pour les écrans ≥ 1920px
             },
             width: {
-                'dash': 'calc(100vw - 392px)',
-                'dashsidebar': '392px',
+                'headerWDesktop': '1200px',
                 'conversations': '1066px',
                 'profileDesktop': '720px',
                 'previewLarge': '900px',

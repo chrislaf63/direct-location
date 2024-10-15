@@ -37,7 +37,7 @@
         </div>
         <div id="target"
              class="bg-gray-200 border border-black/20 rounded-xl shadow-xl m-auto my-5 py-4 md:w-profileDesktop">
-            <h2 class="text-center font-semibold text-2xl pt-3 pb-5">Mes informations</h2>
+            <h1 class="text-center font-semibold text-2xl pt-3 pb-5">Mes informations</h1>
             <div>
                 <div class="md:w-1/2 m-auto text-center">
                     <p class="mb-3"><span class="font-semibold">Nom d'utilisateur : </span>{{ $user->name }}</p>
@@ -54,7 +54,8 @@
                             </svg>
                             <span>&nbsp;&nbsp;Modifier mes informations</span></button>
                     </a>
-                    <button id="delete"
+                    <button
+                        id="delete"
                             class="bg-gray-50 border-1 border-black/50 rounded-xl flex items-center justify-center px-3 py-1 hover:bg-gray-100 hover:shadow-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="size-6">
@@ -66,10 +67,10 @@
 
         </div>
         <div id="modal"
-             class="hidden bg-gray-200 border border-black/20 rounded-xl shadow-xl m-auto my-5 py-4 md:w-profileDesktop">
-            <h2>Attention</h2>
-            <p>Votre compte va être supprimé</p>
-            <p>Souhaitez-vous vraiment continuer ?</p>
+             class="hidden bg-gray-200 border-4 border-red-700 rounded-xl shadow-xl m-auto my-5 py-4 md:w-[400px]">
+            <h2 class="text-center text-3xl font-bold">Attention</h2>
+            <p class="text-center mt-3">Votre compte va être supprimé</p>
+            <p class="text-center mb-3">Souhaitez-vous vraiment continuer ?</p>
             <div class="flex justify-around">
                 <form action="{{ route('user.destroy', $user->id) }}" method="post">
                     @method('delete')
@@ -93,6 +94,8 @@
             </a>
         </div>
         @endif
+    </div>
+    <script src="{{ asset('js/modal-account-delete.js') }}" defer></script>
 </x-main-layout>
 
 

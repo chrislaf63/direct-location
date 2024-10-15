@@ -30,7 +30,7 @@ return new class extends Migration
                 ->OnDelete('set null');
             $table->string('title');
             $table->enum('status', array('pending', 'published'));
-            $table->string('excerpt');
+            $table->text('excerpt');
             $table->text('description');
             $table->decimal('price', 10, 2);
             $table->enum('time_unity', array('heure', 'demi-journée', 'jour', 'semaine', 'mois', 'année'));

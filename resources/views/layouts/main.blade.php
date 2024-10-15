@@ -31,7 +31,6 @@
     {{ $slot }}
 </main>
 @include('layouts.front.footer')
-@include('layouts.front.modal-script')
 </body>
 </html>
 

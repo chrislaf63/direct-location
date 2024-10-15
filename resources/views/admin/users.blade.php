@@ -36,4 +36,5 @@
             <div class="modal-content"></div>
         </div>
     </div>
+    <script src="{{ asset('js/modal-user-delete.js') }}" defer></script>
 </x-admin-layout>

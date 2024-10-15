@@ -8,4 +8,5 @@
             {{ $publishedads->links() }}
         </div>
     </div>
+    <script src="{{ asset('js/modal-ad-delete.js') }}" defer></script>
 </x-admin-layout>

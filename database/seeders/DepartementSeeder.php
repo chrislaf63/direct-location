@@ -592,31 +592,31 @@ class DepartementSeeder extends Seeder
         Departement::factory()->create([
             'name' => 'Guadeloupe',
             'number' => '971',
-            'region_id' => 1,
+            'region_id' => 14,
         ]);
 
         Departement::factory()->create([
             'name' => 'Martinique',
             'number' => '972',
-            'region_id' => 1,
+            'region_id' => 15,
         ]);
 
         Departement::factory()->create([
             'name' => 'Guyane',
             'number' => '973',
-            'region_id' => 1,
+            'region_id' => 16,
         ]);
 
         Departement::factory()->create([
             'name' => 'La Réunion',
             'number' => '974',
-            'region_id' => 1,
+            'region_id' => 17,
         ]);
 
         Departement::factory()->create([
             'name' => 'Mayotte',
             'number' => '976',
-            'region_id' => 1,
+            'region_id' => 18,
         ]);
 
     }

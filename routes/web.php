@@ -9,6 +9,8 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\MessageController;
 use App\Models\Ad;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\AdvancedSearchController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -44,6 +46,9 @@ Route::controller(AdminController::class)->middleware(['auth', 'admin'])->group(
 
 Route::get('profile', [ProfileController::class, 'display'])->name('user');
 
+Route::get('/regions/{region}/departments', [LocationController::class, 'getDepartments']);
+Route::get('/departments/{department}/cities', [LocationController::class, 'getCities']);
+
 Route::controller(AdController::class)->group(function () {
     Route::get('/', 'index')->name('ad.index');
     Route::get('annonces/{id}', 'show')->name('ad.show');
@@ -58,6 +63,19 @@ Route::controller(AdController::class)->middleware('auth')->group(function () {
     Route::put('annonces/{id}', 'update')->name('ad.update');
     Route::delete('annonces/{ad}', 'destroy')->name('ad.destroy');
 });
+
+Route::controller(AdvancedSearchController::class)->group(function () {
+    Route::get('recherche-avancee/region', 'searchFormStep1')->name('ad.advanced-search1');
+    Route::post('recherche-avancee/region', 'searchStep1')->name('advanced-search1');
+    Route::get('recherche-avancee/departement', 'SearchFormStep2')->name('ad.advanced-search2');
+    Route::post('recherche-avancee/departement', 'searchStep2')->name('advanced-search2');
+    Route::get('recherche-avancee/categorie', 'searchFormStep3')->name('ad.advanced-search3');
+    Route::post('recherche-avancee/categorie', 'searchStep3')->name('advanced-search3');
+    Route::get('recherche-avancee/mot-cle', 'searchFormStep4')->name('ad.advanced-search4');
+    Route::post('recherche-avancee/mot-cle', 'searchStep4')->name('advanced-search4');
+    Route::get('recherche-avancee/resultats', 'searchResults')->name('ad.advanced-search-results');
+});
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations.index');

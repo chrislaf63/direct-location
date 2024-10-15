@@ -65,12 +65,12 @@
                         <select name="time_unity" id="time_unity"
                                 class="w-full p-3 mt-2 border border-neutral-300 rounded-md"
                                 required>
-                            <option value="heure">heure</option>
-                            <option value="demi-journée">demi-journée</option>
-                            <option value="jour">jour</option>
-                            <option value="semaine">semaine</option>
-                            <option value="mois">mois</option>
-                            <option value="année">année</option>
+                            <option value="heure" {{ $ad->exists() && $ad->time_unity == "heure" ? 'selected' : '' }}>heure</option>
+                            <option value="demi-journée" {{ $ad->exists() && $ad->time_unity == "demi-journée" ? 'selected' : '' }} >demi-journée</option>
+                            <option value="jour" {{ $ad->exists() && $ad->time_unity == "jour" ? 'selected' : '' }}>jour</option>
+                            <option value="semaine" {{ $ad->exists() && $ad->time_unity == "semaine" ? 'selected' : '' }}>semaine</option>
+                            <option value="mois" {{ $ad->exists() && $ad->time_unity == "mois" ? 'selected' : '' }}>mois</option>
+                            <option value="année" {{ $ad->exists() && $ad->time_unity == "année" ? 'selected' : '' }}>année</option>
                         </select>
                     </div>
                 </div>
