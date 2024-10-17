@@ -41,7 +41,7 @@ class AdController extends Controller
     }
 
     /**
-     * Display ads by category.
+     * Display ads by category.??
      *
      * @param Category $category
      * @return View

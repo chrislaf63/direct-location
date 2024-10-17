@@ -1,9 +1,9 @@
 @extends ('layouts.my-messages')
 
 @section('content')
-<div class="flex h-messages w-conversations m-auto">
+<div class="flex h-messages w-full m-auto border-b border-black/30 lg:w-conversations">
     <!-- Colonne des annonces -->
-    <div class="flex-col w-1/4 border-x border-black/30 h-messages overflow-auto">
+    <div class="flex-col w-2/5 sm:w-1/4 border-x border-black/30 h-messages overflow-auto">
         <div>
             <h3 class="py-4 font-semibold text-center border-b border-black/30">Vos conversations</h3>
         </div>
@@ -22,7 +22,7 @@
         </div>
         @endif
     </div>
-    <div class="flex flex-col justify-end w-1/2 h-messages">
+    <div class="flex flex-col justify-end w-3/5 h-messages sm:w-1/2">
         <div id="messages" class=" p-6 overflow-y-auto">
             <!-- Les messages seront insérés ici après sélection d'une annonce -->
             <div id="message-container" class="flex flex-col space-y-4">
@@ -43,7 +43,9 @@
             </form>
         </div>
     </div>
-    <div class="w-1/4 border-x-2 h-messages border-black"></div>
+    <div class="hidden sm:block w-1/4 border-x-2 h-messages border-black/30">
+
+    </div>
 </div>
 @stop
 

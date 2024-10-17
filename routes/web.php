@@ -35,13 +35,13 @@ Route::middleware('auth')->group(function () {
     Route::get('favorites', [FavoriteController::class, 'index'])->name('favorites');
 });
 
-Route::controller(AdminController::class)->middleware(['auth', 'admin'])->group(function () {
-    Route::get('admin', 'display')->name('admin');
-    Route::get('admin/annonces-en-attente-de-validation', 'tovalidate')->name('admin.tovalidate');
-    Route::get('admin/annonces-en-attente-de-validation/{id}', 'show')->name('ad.tovalidate.show');
-    Route::put('admin/annonces-en-attente-de-validation/{id}', 'validate')->name('ad.validate');
-    Route::delete('admin/annonces-en-attente-de-validation/{id}', 'destroy')->name('ad.todestroy');
-    Route::get('admin/liste-des-utilisateurs', 'indexUsers')->name('users');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('admin', [AdminController::class, 'display'])->name('admin');
+    Route::get('admin/annonces-en-attente-de-validation', [AdminController::class, 'tovalidate'])->name('admin.tovalidate');
+    Route::get('admin/annonces-en-attente-de-validation/{id}', [AdminController::class, 'show'])->name('ad.tovalidate.show');
+    Route::put('admin/annonces-en-attente-de-validation/{id}', [AdminController::class, 'validate'])->name('ad.validate');
+    Route::delete('admin/annonces-en-attente-de-validation/{id}', [AdminController::class, 'destroy'])->name('ad.todestroy');
+    Route::get('admin/liste-des-utilisateurs', [AdminController::class, 'indexUsers'])->name('users');
 });
 
 Route::get('profile', [ProfileController::class, 'display'])->name('user');
@@ -68,7 +68,6 @@ Route::controller(AdvancedSearchController::class)->group(function () {
     Route::get('recherche-avancee', 'searchForm')->name('ad.advanced-search');
     Route::post('recherche-avancee', 'search')->name('advanced-search');
 });
-
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations.index');

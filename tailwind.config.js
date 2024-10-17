@@ -41,7 +41,7 @@ export default {
             },
             screens: {
                 '3xl': '1537px',
-                '4xl': '1921px', // Définit le breakpoint XXL pour les écrans ≥ 1920px
+                '4xl': '1921px',
             },
             width: {
                 'headerWDesktop': '1200px',

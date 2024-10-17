@@ -854,8 +854,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="relative h-screen">
-@include('layouts.front.header-static')
+<body class="pt-headerMobile relative h-screen lg:pt-headerDesktop">
+@include('layouts.front.header-fixed')
 <main class="h-withHeader" >
     @yield('content')
 </main>

@@ -1,4 +1,4 @@
-<header class="h-headerMobile md:h-headerDesktop border-b-black/50 border-b-2 fixed left-0 top-0 right-0 bg-white h-headerDesktop">
+<header class="h-headerMobile lg:h-headerDesktop border-b-black/50 border-b-2 fixed left-0 top-0 right-0 bg-white">
     {{-- Conteneur global --}}
     <div class=" w-full lg:w-headerWDesktop m-auto flex max-h-headerDesktop justify-around relative">
         <div>
