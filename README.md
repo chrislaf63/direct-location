@@ -36,6 +36,31 @@
     git clone https://github.com/username/location-materiel.git
     cd location-materiel</code></pre>
     </li>
+    <li><h3>Installer les dépendances PHP avec Composer :</h3>
+    <pre><code>
+    composer install
+    </code></pre>
+    </li>
+    <li><h3>Installer les dépendances JavaScript avec npm :</h3>
+    <pre><code>
+    npm install
+    npm run dev
+    </code></pre>
+    </li>
+    <li><h3>Générer la clé d’application :</h3>
+    <pre><code>
+    php artisan key:generate
+    </code></pre>
+    </li>
+</ol>
+
+<h2>Configuration</h2>
+<ol>
+    <li><h3>Configurer l’environnement :</h3>
+    <p>Copiez le fichier .env.example en .env :</p>
+        <pre><code>
+        cp .env.example .env
+        </code></pre>
     <li><h3>Configurer les variables d’environnement dans le fichier .env :</h3>
     <p>Modifiez les sections suivantes avec vos paramètres :</p>
         <pre><code>
