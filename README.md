@@ -103,3 +103,8 @@
     </code></pre>
     </li>
 </ol>
+
+<h2>Fonctionnalités principales</h2>
+<ul>
+    <li><span weight=semibold>Gestion des annonces : </span>Les utilisateurs peuvent publier des annonces pour louer ou proposer du matériel.</li>
+</ul>
