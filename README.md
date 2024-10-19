@@ -69,17 +69,37 @@
 <ul>
     <li>Lancer le serveur de développement :
     <pre><code>
-        php artisan serve
+    php artisan serve
     </code></pre>
     </li>
     <li>Compiler les assets :
     <pre><code>
-        npm run dev
+    npm run dev
     </code></pre>
     </li>
     <li>Mettre à jour les assets pour la production :
     <pre><code>
-        npm run build
+    npm run build
     </code></pre>
     </li>
 </ul>
+
+<h2>Migrations et Seeders</h2>
+<ol>
+    <li>Exécuter les migrations de base de données :
+    <pre><code>
+    php artisan migrate
+    </code></pre>
+    </li>
+    <li>Exécuter les seeders pour les données de test :
+    <pre><code>
+    php artisan db:seed
+    </code></pre>
+    </li>
+    <li>Réinitialiser la base de données (optionnel) :
+    <p>Si vous souhaitez recommencer depuis le début avec une base de données vierge, utilisez :</p>
+    <pre><code>
+    php artisan db:seed
+    </code></pre>
+    </li>
+</ol>
