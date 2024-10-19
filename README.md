@@ -35,12 +35,15 @@
 <h2>Installation</h2>
 <ol>
     <li><h3>Cloner le repository :</h3>
-    <pre><code>git clone https://github.com/username/location-materiel.git
+    <pre><code>
+    git clone https://github.com/username/location-materiel.git
     cd location-materiel</code></pre>
     </li>
     <li><h3>Configurer les variables d’environnement dans le fichier .env :</h3>
     <p>Modifiez les sections suivantes avec vos paramètres :</p>
-        <pre><code>APP_NAME=LocationMateriel
+        <pre><code>
+            
+    APP_NAME=LocationMateriel
     APP_URL=http://localhost
             
     DB_CONNECTION=mysql
