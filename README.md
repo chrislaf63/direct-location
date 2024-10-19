@@ -36,8 +36,8 @@
 <ol>
     <li><h3>Cloner le repository :</h3>
         ```bash
-    <p>git clone https://github.com/username/location-materiel.git</p>
-    <p>cd location-materiel</p>
+    git clone https://github.com/username/location-materiel.git
+    cd location-materiel
     </li>
     <li><h3>Configurer les variables d’environnement dans le fichier .env :</h3>
     <p>Modifiez les sections suivantes avec vos paramètres :</p></li>
