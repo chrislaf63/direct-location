@@ -36,8 +36,27 @@
 <ol>
     <li><h3>Cloner le repository :</h3>
     <pre><code>git clone https://github.com/username/location-materiel.git
-    cd location-materiel</code></pre>
+               cd location-materiel</code></pre>
     </li>
     <li><h3>Configurer les variables d’environnement dans le fichier .env :</h3>
-    <p>Modifiez les sections suivantes avec vos paramètres :</p></li>
+    <p>Modifiez les sections suivantes avec vos paramètres :</p>
+        <pre><code>APP_NAME=LocationMateriel
+                   APP_URL=http://localhost
+            
+                   DB_CONNECTION=mysql
+                   DB_HOST=127.0.0.1
+                   DB_PORT=3306
+                   DB_DATABASE=nom_de_la_base_de_données
+                   DB_USERNAME=utilisateur
+                   DB_PASSWORD=mot_de_passe
+
+                   MAIL_MAILER=smtp
+                   MAIL_HOST=smtp.exemple.com
+                   MAIL_PORT=587
+                   MAIL_USERNAME=votre_email
+                   MAIL_PASSWORD=mot_de_passe
+                   MAIL_ENCRYPTION=tls
+                   MAIL_FROM_ADDRESS="noreply@location-materiel.com"
+</code></pre>
+    </li>
 </ol>
