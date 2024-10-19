@@ -13,10 +13,7 @@
 <li>Configuration</li>
 <li>Commandes Artisan</li>
 <li>Migrations et seeders</li>
-<li>Tests</li>
 <li>Fonctionnalités principales</li>
-<li>Contribuer</li>
-<li>Licences</li>
 </ul>
 
 <h2>Pré-requis</h2>
@@ -107,4 +104,7 @@
 <h2>Fonctionnalités principales</h2>
 <ul>
     <li><b>Gestion des annonces : </b>Les utilisateurs peuvent publier des annonces pour louer ou proposer du matériel.</li>
+    <li><b>Système de messagerie : </b>Les utilisateurs peuvent contacter les propriétaires de matériel via une messagerie interne.</li>
+    <li><b>Favoris :</b>Possibilité d’ajouter des annonces aux favoris pour un accès rapide.</li>
+    <li><b>Filtrage par catégorie, région et départements :</b>Recherchez et filtrez le matériel disponible selon différentes catégories et localités.</li>
 </ul>
