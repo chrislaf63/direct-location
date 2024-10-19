@@ -63,3 +63,23 @@
 </code></pre>
     </li>
 </ol>
+
+<h2>Commandes Artisan</h2>
+<p>Pour faciliter le développement, vous aurez besoin de certaines commandes Artisan :</p>
+<ul>
+    <li>Lancer le serveur de développement :
+    <pre><code>
+        php artisan serve
+    </code></pre>
+    </li>
+    <li>Compiler les assets :
+    <pre><code>
+        npm run dev
+    </code></pre>
+    </li>
+    <li>Mettre à jour les assets pour la production :
+    <pre><code>
+        npm run build
+    </code></pre>
+    </li>
+</ul>
