@@ -17,14 +17,15 @@
 <li>Fonctionnalités principales</li>
 <li>Contribuer</li>
 <li>Licences</li>
-        </ul>
-Pré-requis
-Assurez-vous d’avoir les éléments suivants installés avant de démarrer :
+</ul>
 
-PHP >= 8.3
-Composer
-Node.js & npm
-MySQL ou tout autre base de données compatible avec Laravel
-Un serveur web (ex. : Apache, Nginx)
-uBlock Origin (facultatif pour éviter les soucis de blocage si vous avez rencontré des problèmes)
+<h2>Pré-requis</h2>
+<p>Assurez-vous d’avoir les éléments suivants installés avant de démarrer :</p>
 
+<ul>
+<li>PHP >= 8.3</li>
+<li>Composer</li>
+<li>Node.js & npm</li>
+<li>MySQL ou tout autre base de données compatible avec Laravel</li>
+<li>Un serveur web (ex. : Apache, Nginx) ou local (wamp, lamp)</li>
+</ul>
