@@ -106,5 +106,5 @@
 
 <h2>Fonctionnalités principales</h2>
 <ul>
-    <li><span style="font-weight:700;">Gestion des annonces : </span>Les utilisateurs peuvent publier des annonces pour louer ou proposer du matériel.</li>
+    <li><b>Gestion des annonces : </b>Les utilisateurs peuvent publier des annonces pour louer ou proposer du matériel.</li>
 </ul>
